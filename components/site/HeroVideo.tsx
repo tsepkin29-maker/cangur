@@ -67,7 +67,7 @@ export function HeroVideo({
       {src && (
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover [filter:brightness(0.5)_saturate(1.05)]"
+          className="absolute inset-0 h-full w-full object-cover [filter:brightness(0.55)]"
           muted
           loop
           playsInline
@@ -80,7 +80,8 @@ export function HeroVideo({
           {src.mp4 ? <source src={src.mp4} type="video/mp4" /> : null}
         </video>
       )}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(237,27,63,0.28),transparent_34%),linear-gradient(180deg,rgba(8,8,8,0.35),rgba(6,6,6,0.82))]" />
+      {/* neutral black darkening for white-text contrast — no colour cast */}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.42)_0%,rgba(0,0,0,0.55)_55%,rgba(0,0,0,0.74)_100%)]" />
     </div>
   );
 }
