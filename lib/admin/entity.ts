@@ -23,10 +23,21 @@ export interface FieldSpec {
   folder?: string; // image upload folder
 }
 
+export type PreviewKind =
+  | "pricing"
+  | "hero"
+  | "ad"
+  | "product"
+  | "program"
+  | "coach"
+  | "testimonial"
+  | "gallery";
+
 export interface EntitySpec {
   table: EditableTable;
   title: string;
   listPath: string;
+  preview?: PreviewKind;
   /** columns shown in the list table (subset of fields, by name) */
   listColumns: { name: string; label: string; kind?: "text" | "badge" | "image" }[];
   fields: FieldSpec[];

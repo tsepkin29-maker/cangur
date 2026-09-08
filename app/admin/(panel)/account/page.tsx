@@ -42,7 +42,7 @@ export default function AccountPage() {
           Новый пароль
           <input
             type="password"
-            className="admin-input"
+            className="a-input"
             autoComplete="new-password"
             value={pw}
             onChange={(e) => setPw(e.target.value)}
@@ -52,7 +52,7 @@ export default function AccountPage() {
           Повторите пароль
           <input
             type="password"
-            className="admin-input"
+            className="a-input"
             autoComplete="new-password"
             value={pw2}
             onChange={(e) => setPw2(e.target.value)}
@@ -66,7 +66,7 @@ export default function AccountPage() {
             {msg.text}
           </p>
         ) : null}
-        <button className="admin-btn admin-btn--primary" disabled={busy}>
+        <button className="a-btn a-btn--primary" disabled={busy}>
           {busy ? "…" : "Обновить пароль"}
         </button>
       </form>

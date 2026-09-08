@@ -23,6 +23,7 @@ export const PROGRAMS_SPEC: EntitySpec = {
   table: "programs",
   title: "Направление",
   listPath: "/admin/programs",
+  preview: "program",
   listColumns: [{ name: "title", label: "Название" }],
   fields: [
     slug("латиницей, без пробелов — напр. sparring"),
@@ -40,6 +41,7 @@ export const PRICING_SPEC: EntitySpec = {
   table: "pricing_plans",
   title: "Тариф",
   listPath: "/admin/pricing",
+  preview: "pricing",
   listColumns: [{ name: "title", label: "Название" }],
   fields: [
     slug("латиницей — напр. group-month"),
@@ -73,6 +75,7 @@ export const COACHES_SPEC: EntitySpec = {
   table: "coaches",
   title: "Тренер",
   listPath: "/admin/coaches",
+  preview: "coach",
   listColumns: [{ name: "name", label: "Имя" }],
   fields: [
     { name: "name", kind: "text", label: "Имя" },
@@ -134,6 +137,7 @@ export const TESTIMONIALS_SPEC: EntitySpec = {
   table: "testimonials",
   title: "Отзыв",
   listPath: "/admin/testimonials",
+  preview: "testimonial",
   listColumns: [{ name: "author", label: "Автор" }],
   fields: [
     { name: "author", kind: "text", label: "Имя автора" },
@@ -147,6 +151,7 @@ export const PRODUCTS_SPEC: EntitySpec = {
   table: "products",
   title: "Товар",
   listPath: "/admin/shop",
+  preview: "product",
   listColumns: [{ name: "title", label: "Название" }],
   fields: [
     slug("латиницей — напр. glove-black"),
@@ -167,6 +172,7 @@ export const ADS_SPEC: EntitySpec = {
   table: "advertisements",
   title: "Кампания",
   listPath: "/admin/advertising",
+  preview: "ad",
   listColumns: [{ name: "campaign_name", label: "Кампания" }],
   orderBy: "priority",
   orderDesc: true,
@@ -270,6 +276,7 @@ export const GALLERY_SPEC: EntitySpec = {
   table: "gallery_images",
   title: "Фото галереи",
   listPath: "/admin/gallery",
+  preview: "gallery",
   listColumns: [{ name: "alt", label: "Описание" }],
   fields: [
     { name: "image_url", kind: "image", label: "Фото", folder: "gallery" },

@@ -62,14 +62,14 @@ export function NavigationForm({ rows }: { rows: NavRow[] }) {
   return (
     <div className="flex max-w-[720px] flex-col gap-3">
       {items.map((r, i) => (
-        <div key={r.key} className="admin-card p-3">
+        <div key={r.key} className="a-card p-3">
           <div className="flex items-center gap-3">
             <div className="flex flex-col">
-              <button className="admin-btn px-2 py-0.5" onClick={() => move(i, -1)} disabled={i === 0}>
+              <button className="a-btn px-2 py-0.5" onClick={() => move(i, -1)} disabled={i === 0}>
                 ↑
               </button>
               <button
-                className="admin-btn mt-1 px-2 py-0.5"
+                className="a-btn mt-1 px-2 py-0.5"
                 onClick={() => move(i, 1)}
                 disabled={i === items.length - 1}
               >
@@ -99,7 +99,7 @@ export function NavigationForm({ rows }: { rows: NavRow[] }) {
                   {l.toUpperCase()} · своё название
                 </span>
                 <input
-                  className="admin-input"
+                  className="a-input"
                   placeholder={l === "ru" ? DEFAULT_LABEL[r.key] : ""}
                   value={r.label[l] ?? ""}
                   onChange={(e) =>
@@ -114,7 +114,7 @@ export function NavigationForm({ rows }: { rows: NavRow[] }) {
 
       {err ? <p className="text-[13px] text-[#ff6b81]">Ошибка: {err}</p> : null}
       <div className="flex items-center gap-3">
-        <button className="admin-btn admin-btn--primary" onClick={save} disabled={pending}>
+        <button className="a-btn a-btn--primary" onClick={save} disabled={pending}>
           {pending ? "Сохранение…" : "Сохранить"}
         </button>
         {savedAt ? <span className="text-[13px] text-[#5ecb7a]">Сохранено ✓</span> : null}

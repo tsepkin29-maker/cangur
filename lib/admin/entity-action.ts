@@ -50,3 +50,15 @@ export async function removeEntity(
   const { deleteRow } = await import("./actions");
   await deleteRow(table, id);
 }
+
+/** Bound per editor page; deletes then sends the user back to the list. */
+export async function deleteAndBack(
+  table: EditableTable,
+  id: string,
+  listPath: string,
+): Promise<void> {
+  const { deleteRow } = await import("./actions");
+  const { redirect } = await import("next/navigation");
+  await deleteRow(table, id);
+  redirect(listPath);
+}

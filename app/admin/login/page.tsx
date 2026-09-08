@@ -67,7 +67,7 @@ function LoginForm() {
       <label className="flex flex-col gap-1.5">
         <span className="text-[13px] font-bold text-[var(--a-muted)]">Email</span>
         <input
-          className="admin-input"
+          className="a-input"
           type="email"
           autoComplete="username"
           value={email}
@@ -78,7 +78,7 @@ function LoginForm() {
       <label className="flex flex-col gap-1.5">
         <span className="text-[13px] font-bold text-[var(--a-muted)]">Пароль</span>
         <input
-          className="admin-input"
+          className="a-input"
           type="password"
           autoComplete="current-password"
           value={password}
@@ -87,7 +87,7 @@ function LoginForm() {
         />
       </label>
       {msg ? <p className="text-[13px] text-[#ff6b81]">{msg}</p> : null}
-      <button className="admin-btn admin-btn--primary mt-1 justify-center py-3" disabled={busy}>
+      <button className="a-btn a-btn--primary mt-1 justify-center py-3" disabled={busy}>
         {busy ? "…" : "Войти"}
       </button>
       <button

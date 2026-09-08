@@ -2,24 +2,27 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { Icon } from "./icons";
 
 export function ImageInput({
   name,
   label,
-  defaultValue,
+  value,
+  onChange,
   folder = "misc",
   optional,
   help,
 }: {
   name: string;
   label: string;
-  defaultValue?: string | null;
+  value: string;
+  onChange: (url: string) => void;
   folder?: string;
   optional?: boolean;
   help?: string;
 }) {
-  const [url, setUrl] = useState(defaultValue ?? "");
   const [busy, setBusy] = useState(false);
+  const [drag, setDrag] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -36,41 +39,65 @@ export function ImageInput({
       setErr(json.error || "Не удалось загрузить файл");
       return;
     }
-    setUrl(json.url);
+    onChange(json.url);
   };
 
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-2">
       <span className="text-[13px] font-bold">{label}</span>
-      <input type="hidden" name={name} value={url} readOnly />
-      <div className="flex items-start gap-3">
-        <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-md border border-[var(--a-line)] bg-[#101013]">
-          {url ? (
-            <Image src={url} alt="" fill className="object-cover" sizes="112px" />
+      <input type="hidden" name={name} value={value} readOnly />
+
+      <div
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDrag(true);
+        }}
+        onDragLeave={() => setDrag(false)}
+        onDrop={(e) => {
+          e.preventDefault();
+          setDrag(false);
+          const f = e.dataTransfer.files?.[0];
+          if (f) void upload(f);
+        }}
+        className={`flex items-center gap-4 rounded-[12px] border p-3 transition-colors ${
+          drag
+            ? "border-[var(--red)] bg-[rgba(237,27,63,0.06)]"
+            : "border-[var(--line-2)] bg-[#0e0e10]"
+        }`}
+      >
+        <div className="relative h-[76px] w-[112px] shrink-0 overflow-hidden rounded-[8px] border border-[var(--line)] bg-[#0a0a0b]">
+          {value ? (
+            <Image src={value} alt="" fill sizes="112px" className="object-cover" />
           ) : (
-            <span className="absolute inset-0 grid place-items-center text-[11px] text-[var(--a-muted)]">
-              нет фото
+            <span className="absolute inset-0 grid place-items-center text-[var(--text-faint)]">
+              <Icon name="image" width={18} height={18} />
             </span>
           )}
         </div>
+
         <div className="flex flex-col gap-1.5">
-          <button
-            type="button"
-            className="admin-btn"
-            disabled={busy}
-            onClick={() => fileRef.current?.click()}
-          >
-            {busy ? "Загрузка…" : url ? "Заменить" : "Загрузить"}
-          </button>
-          {url && optional ? (
+          <div className="flex gap-1.5">
             <button
               type="button"
-              className="admin-btn admin-btn--danger"
-              onClick={() => setUrl("")}
+              className="a-btn a-btn--sm"
+              disabled={busy}
+              onClick={() => fileRef.current?.click()}
             >
-              Убрать
+              {busy ? "Загрузка…" : value ? "Заменить" : "Загрузить"}
             </button>
-          ) : null}
+            {value && optional ? (
+              <button
+                type="button"
+                className="a-btn a-btn--sm a-btn--danger"
+                onClick={() => onChange("")}
+              >
+                Удалить
+              </button>
+            ) : null}
+          </div>
+          <span className="text-[12px] a-faint">
+            JPEG, PNG, WebP, AVIF · до 8 МБ · можно перетащить сюда
+          </span>
           <input
             ref={fileRef}
             type="file"
@@ -84,10 +111,9 @@ export function ImageInput({
           />
         </div>
       </div>
-      {err ? <span className="text-[12px] text-[#ff6b81]">{err}</span> : null}
-      {help ? (
-        <span className="text-[12px] text-[var(--a-muted)]">{help}</span>
-      ) : null}
+
+      {err ? <span className="text-[12px] text-[var(--red-soft)]">{err}</span> : null}
+      {help ? <span className="text-[12px] a-faint">{help}</span> : null}
     </div>
   );
 }

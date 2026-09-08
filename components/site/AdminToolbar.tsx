@@ -16,23 +16,9 @@ const SECTION_EDIT: Record<string, string> = {
   contacts: "/admin/contacts",
 };
 
-const TOOLBAR_LINKS = [
-  { path: "/admin", label: "Дашборд" },
-  { path: "/admin/hero", label: "Hero" },
-  { path: "/admin/programs", label: "Направления" },
-  { path: "/admin/gallery", label: "Галерея" },
-  { path: "/admin/pricing", label: "Цены" },
-  { path: "/admin/schedule", label: "Расписание" },
-  { path: "/admin/shop", label: "Pro Shop" },
-  { path: "/admin/advertising", label: "Реклама" },
-  { path: "/admin/contacts", label: "Контакты" },
-  { path: "/admin/settings", label: "Настройки" },
-];
-
 export default function AdminToolbar() {
   const pathname = usePathname();
   const [anchors, setAnchors] = useState<{ id: string; el: HTMLElement }[]>([]);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const found: { id: string; el: HTMLElement }[] = [];
@@ -69,48 +55,21 @@ export default function AdminToolbar() {
         ),
       )}
 
-      <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-red/40 bg-[#0c0c0c]/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1180px] items-center gap-3 px-4 py-2.5 text-[13px]">
-          <span className="font-black uppercase tracking-wide text-red-soft">
-            Режим администратора
-          </span>
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              className="rounded-lg border border-line px-3 py-1.5 font-bold hover:border-red/60"
-            >
-              Быстрый переход ▾
-            </button>
-            {open ? (
-              <div className="absolute bottom-full left-0 mb-2 grid w-56 gap-0.5 rounded-xl border border-line bg-[#141414] p-1.5 shadow-xl">
-                {TOOLBAR_LINKS.map((l) => (
-                  <Link
-                    key={l.path}
-                    href={editHref(l.path)}
-                    className="rounded-md px-2.5 py-1.5 hover:bg-panel-2"
-                  >
-                    {l.label}
-                  </Link>
-                ))}
-              </div>
-            ) : null}
-          </div>
-          <Link
-            href="/admin"
-            className="ml-auto rounded-lg bg-red px-3 py-1.5 font-black text-white"
-          >
-            Панель управления
-          </Link>
-          <form action="/admin/logout" method="post">
-            <button
-              type="submit"
-              className="rounded-lg border border-line px-3 py-1.5 font-bold hover:border-red/60"
-            >
-              Выйти
-            </button>
-          </form>
-        </div>
+      {/* compact floating pill */}
+      <div className="fixed bottom-3 left-1/2 z-[60] flex -translate-x-1/2 items-center gap-2.5 rounded-full border border-white/12 bg-[#0c0c0d]/95 px-3 py-1.5 text-[12px] font-bold text-white shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md">
+        <span className="flex items-center gap-1.5 text-red-soft">
+          <span className="h-1.5 w-1.5 rounded-full bg-red" />
+          CANGUR ADMIN
+        </span>
+        <span className="h-3.5 w-px bg-white/15" />
+        <Link href="/admin" className="text-white/80 hover:text-white">
+          Панель
+        </Link>
+        <form action="/admin/logout" method="post">
+          <button type="submit" className="text-white/50 hover:text-white">
+            Выйти
+          </button>
+        </form>
       </div>
     </>
   );

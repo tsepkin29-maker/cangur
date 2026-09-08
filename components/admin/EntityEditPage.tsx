@@ -1,8 +1,14 @@
 import Link from "next/link";
 import { getRow, listCoachOptions } from "@/lib/admin/read";
 import type { EntitySpec } from "@/lib/admin/entity";
-import { saveEntity, type FormState } from "@/lib/admin/entity-action";
+import {
+  saveEntity,
+  deleteAndBack,
+  type FormState,
+} from "@/lib/admin/entity-action";
 import { EntityForm } from "./EntityForm";
+import { DangerZone } from "./DangerZone";
+import { Icon } from "./icons";
 
 export async function EntityEditPage({
   spec,
@@ -29,32 +35,41 @@ export async function EntityEditPage({
     fd: FormData,
   ) => Promise<FormState>;
 
+  const del = deleteAndBack.bind(null, spec.table, id, spec.listPath);
   const backHref =
     spec.listPath + (from ? `?from=${encodeURIComponent(from)}` : "");
+  const rowTitle =
+    (typeof values.campaign_name === "string" && values.campaign_name) ||
+    (typeof values.name === "string" && values.name) ||
+    (values.title && typeof values.title === "object"
+      ? (values.title as Record<string, string>).ru
+      : "") ||
+    spec.title;
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-wrap items-center gap-3">
-        <Link href={backHref} className="admin-btn">
-          ← Назад
-        </Link>
-        {from ? (
-          <a href={from} className="admin-btn">
-            ← Вернуться на сайт
-          </a>
-        ) : null}
-        <h1 className="text-xl font-black">
-          {isNew ? `Новый: ${spec.title}` : `Редактирование: ${spec.title}`}
-        </h1>
-      </div>
+    <div className="flex flex-col gap-6">
+      <header className="flex flex-col gap-1.5">
+        <div className="flex items-center gap-3">
+          <Link href={backHref} className="a-btn a-btn--ghost a-btn--sm px-1.5">
+            <Icon name="arrowLeft" width={16} height={16} />
+          </Link>
+          <p className="a-eyebrow">
+            {spec.title} · {isNew ? "новая запись" : "редактирование"}
+          </p>
+        </div>
+        <h1 className="a-title">{isNew ? `${spec.title} — новая запись` : rowTitle}</h1>
+      </header>
+
       <EntityForm
         action={action}
         fields={fields}
         values={values}
         isNew={isNew}
         from={from}
-        listPath={spec.listPath}
+        previewKind={spec.preview ?? null}
       />
+
+      {!isNew ? <DangerZone title={rowTitle} onDelete={del} /> : null}
     </div>
   );
 }

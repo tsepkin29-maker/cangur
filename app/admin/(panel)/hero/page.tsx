@@ -12,6 +12,7 @@ export default async function Page({
       table="hero"
       title="Hero"
       fields={HERO_FIELDS}
+      previewKind="hero"
       description="Первый экран. Если видео выключено — показывается только постер."
       from={from ?? null}
     />
