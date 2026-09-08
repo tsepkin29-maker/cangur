@@ -1,8 +1,12 @@
 # Cangur — Netlify config.
-# Routing, SSR, RSC, Server Actions, ISR/revalidateTag/updateTag and
-# next/image are handled by the auto-provisioned Next.js Runtime
-# (@netlify/plugin-nextjs). Do NOT add manual [[redirects]] for locale
-# routing or a publish dir — the runtime owns that.
+#
+# The Next.js adapter (OpenNext) is applied automatically by Netlify and
+# kept up to date on every build — it is NOT pinned here on purpose, per
+# Netlify's own guidance. Routing, SSR/RSC, Server Actions, ISR
+# (revalidateTag / updateTag) and next/image optimization are all
+# provisioned by that adapter. No [[plugins]], no publish dir, and no
+# manual [[redirects]] for locale routing — the runtime owns all of it.
+# This file only carries Node version + headers/caching.
 
 [build]
   command = "npm run build"
@@ -10,9 +14,6 @@
 [build.environment]
   NODE_VERSION = "22"
   NEXT_TELEMETRY_DISABLED = "1"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
 
 # --- security headers (all routes) ----------------------------------------
 [[headers]]
