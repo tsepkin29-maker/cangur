@@ -94,7 +94,7 @@ export async function Pricing() {
       <p className="mt-4 max-w-[52ch] text-sm text-muted">{t("note")}</p>
 
       <BookCta
-        phone={settings.phone}
+        phone={settings.phoneHref}
         phoneDisplay={settings.phoneDisplay}
         label={pick(settings.bookCtaLabel, locale) || t("bookCta")}
       />

@@ -116,7 +116,7 @@ export default async function LocaleLayout({
           <main id="main">{children}</main>
           <Footer settings={settings} />
           <MobileCallBar
-            phone={settings.phone}
+            phone={settings.phoneHref}
             phoneDisplay={settings.phoneDisplay}
             label={callLabel}
           />

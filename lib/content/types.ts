@@ -13,9 +13,11 @@ export type Localized = Partial<Record<Locale, string>>;
 
 export interface SiteSettings {
   clubName: string;
-  phone: string;
-  phoneDisplay: string;
+  phone: string; // as the owner typed it, e.g. "+373 68 702 717"
+  phoneDisplay: string; // alias of `phone`
+  phoneHref: string; // digits only, for tel: links
   phoneSecondary: string | null;
+  phoneSecondaryHref: string | null;
   email: string | null;
   instagramUrl: string | null;
   instagramHandle: string | null;

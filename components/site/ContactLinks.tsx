@@ -41,6 +41,7 @@ export function ContactLinks({
   phone,
   phoneDisplay,
   phoneSecondary,
+  phoneSecondaryHref,
   email,
   instagramUrl,
   instagramHandle,
@@ -52,6 +53,7 @@ export function ContactLinks({
   phone: string;
   phoneDisplay: string;
   phoneSecondary: string | null;
+  phoneSecondaryHref: string | null;
   email: string | null;
   instagramUrl: string | null;
   instagramHandle: string | null;
@@ -77,7 +79,7 @@ export function ContactLinks({
 
       {phoneSecondary ? (
         <a
-          href={`tel:${phoneSecondary}`}
+          href={`tel:${phoneSecondaryHref ?? phoneSecondary}`}
           onClick={() => track("phone_click", { source: "contacts_2" })}
           className={row}
         >

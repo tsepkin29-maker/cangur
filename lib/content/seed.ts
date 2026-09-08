@@ -25,9 +25,11 @@ import type {
 
 export const settings: SiteSettings = {
   clubName: "Cangur Boxing Club & Gym",
-  phone: "+37368702717",
+  phone: "+373 68 702 717",
   phoneDisplay: "+373 68 702 717",
+  phoneHref: "+37368702717",
   phoneSecondary: null,
+  phoneSecondaryHref: null,
   email: null,
   instagramUrl: "https://www.instagram.com/cangur_boxingclub/",
   instagramHandle: "@cangur_boxingclub",

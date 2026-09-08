@@ -22,13 +22,17 @@ const Ln = (v: unknown): Localized | null => {
 };
 const num = (v: number | string | null): number | null =>
   v === null ? null : typeof v === "string" ? Number(v) : v;
+const telHref = (v: string | null): string =>
+  (v ?? "").replace(/[^+\d]/g, "");
 
 export function mapSettings(row: Tables<"settings">): SiteSettings {
   return {
     clubName: row.club_name,
     phone: row.phone,
     phoneDisplay: row.phone,
+    phoneHref: telHref(row.phone),
     phoneSecondary: row.phone_secondary,
+    phoneSecondaryHref: row.phone_secondary ? telHref(row.phone_secondary) : null,
     email: row.email,
     instagramUrl: row.instagram_url,
     instagramHandle: row.instagram_url

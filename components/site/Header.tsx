@@ -76,13 +76,13 @@ export async function Header({ showCoaches = false }: { showCoaches?: boolean })
 
         <LangSwitcher className="hidden sm:flex" />
         <HeaderCallLink
-          phone={settings.phone}
+          phone={settings.phoneHref}
           label={callLabel}
           className="hidden md:inline-flex"
         />
         <MobileNav
           items={items}
-          phone={settings.phone}
+          phone={settings.phoneHref}
           callLabel={callLabel}
         />
       </Container>

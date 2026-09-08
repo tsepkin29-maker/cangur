@@ -29,9 +29,10 @@ export async function Contacts() {
             telegram: "Telegram",
             email: "Email",
           }}
-          phone={settings.phone}
+          phone={settings.phoneHref}
           phoneDisplay={settings.phoneDisplay}
           phoneSecondary={settings.phoneSecondary}
+          phoneSecondaryHref={settings.phoneSecondaryHref}
           email={settings.email}
           instagramUrl={settings.instagramUrl}
           instagramHandle={settings.instagramHandle}
