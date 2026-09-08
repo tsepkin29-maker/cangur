@@ -19,6 +19,7 @@ export interface FieldSpec {
   help?: string;
   optional?: boolean;
   defaultOn?: boolean; // toggle default for a new row
+  numberDefault?: number; // value used for an empty "number" field (NOT NULL columns)
   options?: { value: string; label: string }[];
   folder?: string; // image upload folder
 }
@@ -66,7 +67,12 @@ export function rowFromFormData(
         break;
       case "number": {
         const raw = String(formData.get(f.name) ?? "").trim();
-        row[f.name] = raw === "" ? null : Number(raw);
+        if (raw === "") {
+          row[f.name] = f.numberDefault ?? null;
+        } else {
+          const n = Number(raw);
+          row[f.name] = Number.isFinite(n) ? n : (f.numberDefault ?? null);
+        }
         break;
       }
       case "localized":

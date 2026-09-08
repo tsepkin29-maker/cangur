@@ -212,7 +212,7 @@ export const ADS_SPEC: EntitySpec = {
     },
     { name: "start_date", kind: "date", label: "Дата начала (необязательно)", optional: true },
     { name: "end_date", kind: "date", label: "Дата окончания (необязательно)", optional: true },
-    { name: "priority", kind: "number", label: "Приоритет", help: "больше = выше в очереди показа" },
+    { name: "priority", kind: "number", label: "Приоритет", numberDefault: 0, help: "больше = выше в очереди показа · пусто = 0" },
     { name: "active", kind: "toggle", label: "Активна", defaultOn: true },
   ],
 };
