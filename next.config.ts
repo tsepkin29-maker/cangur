@@ -16,6 +16,35 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["next-intl"],
   },
+  // Security headers are emitted by Next itself so they also cover SSR/HTML
+  // responses — netlify.toml [[headers]] only reach the static CDN layer,
+  // not routes served through the Next.js runtime.
+  async headers() {
+    const base = [
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "X-Frame-Options", value: "SAMEORIGIN" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      {
+        key: "Permissions-Policy",
+        value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+      },
+    ];
+    return [
+      { source: "/:path*", headers: base },
+      {
+        source: "/admin/:path*",
+        headers: [
+          ...base,
+          { key: "Cache-Control", value: "no-store" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
+      },
+      {
+        source: "/api/:path*",
+        headers: [...base, { key: "Cache-Control", value: "no-store" }],
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

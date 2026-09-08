@@ -20,14 +20,11 @@
   NODE_VERSION = "22"
   NEXT_TELEMETRY_DISABLED = "1"
 
-# --- security headers (all routes) ----------------------------------------
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    X-Frame-Options = "SAMEORIGIN"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+# Security headers (and admin/api no-store + noindex) are emitted from
+# next.config.ts headers() so they also cover SSR/HTML responses — Netlify's
+# [[headers]] only reach the static CDN layer, not the Next.js runtime.
+# This file keeps only long-lived caching for public static assets, which
+# the runtime does not manage.
 
 # --- caching ------------------------------------------------------------
 [[headers]]
@@ -59,15 +56,3 @@
   for = "/shop/*"
   [headers.values]
     Cache-Control = "public, max-age=86400"
-
-# --- admin / api: never cached at the CDN, never indexed -----------------
-[[headers]]
-  for = "/admin/*"
-  [headers.values]
-    Cache-Control = "no-store"
-    X-Robots-Tag = "noindex, nofollow"
-
-[[headers]]
-  for = "/api/*"
-  [headers.values]
-    Cache-Control = "no-store"
