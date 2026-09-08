@@ -76,20 +76,24 @@ export function AdBlock({
         data-ad-id={id}
         className="group relative grid overflow-hidden rounded-card border border-line bg-[linear-gradient(120deg,#121212,#0c0c0c)] shadow-[0_0_28px_rgba(237,27,63,0.06)] transition-shadow hover:shadow-[0_0_34px_rgba(237,27,63,0.14)] sm:grid-cols-[minmax(0,42%)_1fr]"
       >
-        {/* media */}
+        {/* media — separate mobile/desktop crops when both are provided */}
         <div className="relative aspect-[16/10] w-full sm:aspect-auto sm:h-full sm:min-h-[220px]">
-          <picture>
-            {mobileImage ? (
-              <source media="(max-width: 639px)" srcSet={mobileImage} />
-            ) : null}
+          {mobileImage ? (
             <Image
-              src={desktopImage}
+              src={mobileImage}
               alt={title || sponsorName || label}
               fill
-              sizes="(max-width: 639px) 100vw, 42vw"
-              className="object-cover"
+              sizes="100vw"
+              className="object-cover sm:hidden"
             />
-          </picture>
+          ) : null}
+          <Image
+            src={desktopImage}
+            alt={title || sponsorName || label}
+            fill
+            sizes="(max-width: 639px) 100vw, 42vw"
+            className={`object-cover ${mobileImage ? "hidden sm:block" : ""}`}
+          />
           <span className="absolute left-3 top-3 rounded-full border border-white/15 bg-black/55 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-white/90 backdrop-blur-sm">
             {label}
           </span>
