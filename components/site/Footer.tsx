@@ -11,14 +11,16 @@ export function Footer({ settings }: { settings: SiteSettings }) {
         <AdSlot placement="footer" />
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p>{t("rights", { year: new Date().getFullYear() })}</p>
-          <a
-            href={settings.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-white"
-          >
-            {settings.instagramHandle}
-          </a>
+          {settings.instagramUrl ? (
+            <a
+              href={settings.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
+              {settings.instagramHandle ?? "Instagram"}
+            </a>
+          ) : null}
         </div>
       </Container>
     </footer>

@@ -8,10 +8,12 @@ type Product = {
   id: string;
   title: string;
   spec: string;
+  description: string | null;
   price: string;
+  oldPrice: string | null;
   image: string;
-  imageWidth: number;
-  imageHeight: number;
+  ctaLabel: string | null;
+  ctaUrl: string | null;
 };
 
 export function ProShopCarousel({
@@ -20,16 +22,12 @@ export function ProShopCarousel({
   title,
   viewLabel,
   closeLabel,
-  prevLabel,
-  nextLabel,
 }: {
   products: Product[];
   kicker: string;
   title: string;
   viewLabel: string;
   closeLabel: string;
-  prevLabel: string;
-  nextLabel: string;
 }) {
   const trackRef = useRef<HTMLUListElement>(null);
   const [active, setActive] = useState<Product | null>(null);
@@ -62,7 +60,7 @@ export function ProShopCarousel({
       if (e.key === "Escape") close();
       if (e.key === "Tab" && dialogRef.current) {
         const f = dialogRef.current.querySelectorAll<HTMLElement>(
-          'a[href],button:not([disabled])',
+          "a[href],button:not([disabled])",
         );
         if (!f.length) return;
         const first = f[0];
@@ -98,19 +96,19 @@ export function ProShopCarousel({
         <div className="hidden gap-2 sm:flex">
           <button
             type="button"
-            aria-label={prevLabel}
+            aria-label="‹"
             onClick={() => scrollByCards(-1)}
             className="flex h-10 w-10 items-center justify-center rounded-lg border border-line bg-panel-2 text-lg hover:border-red/50"
           >
-            {prevLabel}
+            ‹
           </button>
           <button
             type="button"
-            aria-label={nextLabel}
+            aria-label="›"
             onClick={() => scrollByCards(1)}
             className="flex h-10 w-10 items-center justify-center rounded-lg border border-line bg-panel-2 text-lg hover:border-red/50"
           >
-            {nextLabel}
+            ›
           </button>
         </div>
       </div>
@@ -132,8 +130,8 @@ export function ProShopCarousel({
               <Image
                 src={p.image}
                 alt={p.title}
-                width={p.imageWidth}
-                height={p.imageHeight}
+                width={900}
+                height={900}
                 sizes="(max-width: 640px) 78vw, 360px"
                 loading="lazy"
                 className="aspect-square w-full object-cover"
@@ -141,9 +139,12 @@ export function ProShopCarousel({
               <div className="flex min-h-[150px] flex-col p-4">
                 <h3 className="text-xl font-black">{p.title}</h3>
                 <p className="mt-1 text-[13px] text-faint">{p.spec}</p>
-                <p className="mt-auto pt-4 text-[1.35rem] font-black">
-                  {p.price}
-                </p>
+                <div className="mt-auto flex items-baseline gap-2 pt-4">
+                  <p className="text-[1.35rem] font-black">{p.price}</p>
+                  {p.oldPrice ? (
+                    <s className="text-[13px] text-faint">{p.oldPrice}</s>
+                  ) : null}
+                </div>
                 <span className="mt-2 text-[13px] font-black text-red-soft">
                   {viewLabel}
                 </span>
@@ -171,8 +172,8 @@ export function ProShopCarousel({
             <Image
               src={active.image}
               alt={active.title}
-              width={active.imageWidth}
-              height={active.imageHeight}
+              width={900}
+              height={900}
               className="max-h-[360px] w-full object-cover"
             />
             <div className="p-5">
@@ -189,7 +190,24 @@ export function ProShopCarousel({
               </div>
               <p className="mt-2 text-muted">
                 {active.spec} · {active.price}
+                {active.oldPrice ? ` (${active.oldPrice})` : ""}
               </p>
+              {active.description ? (
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {active.description}
+                </p>
+              ) : null}
+              {active.ctaLabel && active.ctaUrl ? (
+                <a
+                  href={active.ctaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("cta_click", { id: "shop_" + active.id })}
+                  className="mt-4 inline-flex rounded-xl bg-red px-4 py-3 text-sm font-black text-white"
+                >
+                  {active.ctaLabel}
+                </a>
+              ) : null}
             </div>
           </div>
         </div>

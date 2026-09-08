@@ -2,7 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getGalleryImages } from "@/lib/content";
-import { pick } from "@/lib/i18n";
+import { pick, pickMaybe } from "@/lib/i18n";
 import { GalleryScroller } from "./GalleryScroller";
 
 export async function Gallery() {
@@ -23,9 +23,8 @@ export async function Gallery() {
         images={images.map((img) => ({
           id: img.id,
           src: img.src,
-          width: img.width,
-          height: img.height,
           alt: pick(img.alt, locale),
+          caption: pickMaybe(img.caption, locale),
         }))}
       />
     </Section>

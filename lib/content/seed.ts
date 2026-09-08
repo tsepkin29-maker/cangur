@@ -1,16 +1,20 @@
 /**
- * Seed content — migrated verbatim from the legacy static site
- * (legacy/original-index.html, legacy/extracted-content.json).
+ * Seed content — migrated verbatim from the legacy static site.
  *
- * This is the single source of truth until STEP 7–8, when the same
- * data moves into Supabase. No fabricated / placeholder marketing data:
- * every value below already existed on the live cangur.md site.
+ * Two jobs:
+ *   1. Fallback for the public site while Supabase is not configured.
+ *   2. Source data for the DB seed script (scripts/seed-db.mjs).
+ *
+ * No fabricated marketing copy — every value already existed on cangur.md.
+ * `coaches` / `advertisements` are empty: the owner adds real ones in /admin.
  */
 
 import type {
   Advertisement,
   Coach,
   GalleryImage,
+  Hero,
+  NavItem,
   PricingPlan,
   Product,
   Program,
@@ -20,11 +24,15 @@ import type {
 } from "./types";
 
 export const settings: SiteSettings = {
+  clubName: "Cangur Boxing Club & Gym",
   phone: "+37368702717",
   phoneDisplay: "+373 68 702 717",
+  phoneSecondary: null,
+  email: null,
   instagramUrl: "https://www.instagram.com/cangur_boxingclub/",
   instagramHandle: "@cangur_boxingclub",
   telegramUrl: null,
+  facebookUrl: null,
   addressLine: {
     ru: "Кишинёв, Ботаника, Grădina Botanică 2",
     ro: "Chișinău, Botanica, Grădina Botanică 2",
@@ -39,14 +47,80 @@ export const settings: SiteSettings = {
   },
   hoursOpen: "07:00",
   hoursClose: "21:00",
+  locationImageUrl: null,
+  currency: "MDL",
   priceRange: "150–4000 MDL",
-  announcement: null,
+  ctaCallLabel: { ru: "Позвонить", ro: "Sună", en: "Call" },
+  routeCtaLabel: {
+    ru: "Открыть маршрут",
+    ro: "Deschide traseul",
+    en: "Open directions",
+  },
+  bookCtaLabel: {
+    ru: "Записаться на тренировку",
+    ro: "Înscrie-te la antrenament",
+    en: "Book a training session",
+  },
+  defaultCtaLabel: { ru: "START NOW", ro: "ÎNCEPE ACUM", en: "START NOW" },
+  defaultCtaUrl: "tel:+37368702717",
+  announcement: { text: {}, url: null, active: false },
+  logoUrl: null,
+  ogImageUrl: null,
+  seo: {
+    title: {
+      ru: "Cangur Boxing Club & Gym — бокс в Кишинёве, Ботаника",
+      ro: "Cangur Boxing Club & Gym — box în Chișinău, Botanica",
+      en: "Cangur Boxing Club & Gym — boxing in Chișinău, Botanica",
+    },
+    description: {
+      ru: "Cangur Boxing Club & Gym — мужской, женский и детский бокс, персональные тренировки в Кишинёве (Ботаника). Абонемент от 1000 MDL.",
+      ro: "Cangur Boxing Club & Gym — box pentru bărbați, femei și copii, antrenamente individuale în Chișinău (Botanica). Abonament de la 1000 MDL.",
+      en: "Cangur Boxing Club & Gym — men's, women's and kids' boxing, personal training in Chișinău (Botanica). Membership from 1000 MDL.",
+    },
+    ogTitle: {},
+    ogDescription: {},
+  },
 };
+
+export const hero: Hero = {
+  kicker: {
+    ru: "CANGUR BOXING CLUB",
+    ro: "CANGUR BOXING CLUB",
+    en: "CANGUR BOXING CLUB",
+  },
+  headline: {
+    ru: "READY TO FIGHT?",
+    ro: "GATA DE LUPTĂ?",
+    en: "READY TO FIGHT?",
+  },
+  subtitle: {
+    ru: "JOIN CANGUR TODAY",
+    ro: "ALĂTURĂ-TE CANGUR ASTĂZI",
+    en: "JOIN CANGUR TODAY",
+  },
+  ctaLabel: { ru: "START NOW", ro: "ÎNCEPE ACUM", en: "START NOW" },
+  ctaUrl: "tel:+37368702717",
+  ctaEnabled: true,
+  videoEnabled: true,
+  posterUrl: "/video/hero-poster.jpg",
+  videoDesktopUrl: "/video/hero.webm",
+  videoMobileUrl: null,
+};
+
+export const navItems: NavItem[] = [
+  { key: "programs", label: {}, visible: true, sortOrder: 1 },
+  { key: "gallery", label: {}, visible: true, sortOrder: 2 },
+  { key: "prices", label: {}, visible: true, sortOrder: 3 },
+  { key: "shop", label: {}, visible: true, sortOrder: 4 },
+  { key: "schedule", label: {}, visible: true, sortOrder: 5 },
+  { key: "coaches", label: {}, visible: true, sortOrder: 6 },
+  { key: "contacts", label: {}, visible: true, sortOrder: 7 },
+];
 
 export const programs: Program[] = [
   {
     id: "men",
-    type: "men",
+    slug: "men",
     title: { ru: "Мужской бокс", ro: "Box pentru bărbați", en: "Men's boxing" },
     text: {
       ru: "Техника, мешки, лапы, выносливость и спарринги.",
@@ -54,14 +128,15 @@ export const programs: Program[] = [
       en: "Technique, bags, pads, endurance and sparring.",
     },
     image: "/images/program-men.webp",
-    imageWidth: 1100,
-    imageHeight: 1467,
+    badge: null,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 1,
   },
   {
     id: "women",
-    type: "women",
+    slug: "women",
     title: { ru: "Женский бокс", ro: "Box feminin", en: "Women's boxing" },
     text: {
       ru: "Сила, координация, форма и уверенность.",
@@ -69,14 +144,15 @@ export const programs: Program[] = [
       en: "Strength, coordination, fitness and confidence.",
     },
     image: "/images/program-women.webp",
-    imageWidth: 1100,
-    imageHeight: 825,
+    badge: null,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 2,
   },
   {
     id: "kids",
-    type: "kids",
+    slug: "kids",
     title: { ru: "Детский бокс", ro: "Box pentru copii", en: "Kids boxing" },
     text: {
       ru: "Дисциплина, реакция и безопасная техника.",
@@ -84,14 +160,15 @@ export const programs: Program[] = [
       en: "Discipline, reactions and safe technique.",
     },
     image: "/images/program-kids.webp",
-    imageWidth: 1100,
-    imageHeight: 825,
+    badge: null,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 3,
   },
   {
     id: "personal",
-    type: "personal",
+    slug: "personal",
     title: { ru: "Персонально", ro: "Individual", en: "Personal training" },
     text: {
       ru: "Индивидуальный план и работа один на один.",
@@ -99,8 +176,9 @@ export const programs: Program[] = [
       en: "Individual plan and one-to-one coaching.",
     },
     image: "/images/program-personal.webp",
-    imageWidth: 864,
-    imageHeight: 1536,
+    badge: null,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 4,
   },
@@ -116,9 +194,12 @@ export const pricingPlans: PricingPlan[] = [
     oldPrice: null,
     currency: "MDL",
     period: "month",
+    periodLabel: null,
     sessionsCount: null,
     badge: { ru: "Популярно", ro: "Popular", en: "Popular" },
     featured: false,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 1,
   },
@@ -135,9 +216,12 @@ export const pricingPlans: PricingPlan[] = [
     oldPrice: null,
     currency: "MDL",
     period: "session",
+    periodLabel: null,
     sessionsCount: null,
     badge: null,
     featured: false,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 2,
   },
@@ -150,9 +234,12 @@ export const pricingPlans: PricingPlan[] = [
     oldPrice: null,
     currency: "MDL",
     period: "session",
+    periodLabel: null,
     sessionsCount: null,
     badge: null,
     featured: true,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 3,
   },
@@ -169,9 +256,12 @@ export const pricingPlans: PricingPlan[] = [
     oldPrice: null,
     currency: "MDL",
     period: "package",
+    periodLabel: null,
     sessionsCount: 10,
     badge: null,
     featured: false,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 4,
   },
@@ -188,28 +278,30 @@ export const pricingPlans: PricingPlan[] = [
     oldPrice: null,
     currency: "MDL",
     period: "session",
+    periodLabel: null,
     sessionsCount: null,
     badge: null,
     featured: false,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 5,
   },
   {
     id: "mini-group",
     slug: "mini-group",
-    title: {
-      ru: "Мини-группа · 3+",
-      ro: "Mini-grup · 3+",
-      en: "Mini group · 3+",
-    },
+    title: { ru: "Мини-группа · 3+", ro: "Mini-grup · 3+", en: "Mini group · 3+" },
     description: null,
     price: 250,
     oldPrice: null,
     currency: "MDL",
     period: "session",
+    periodLabel: null,
     sessionsCount: null,
     badge: null,
     featured: false,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 6,
   },
@@ -217,141 +309,140 @@ export const pricingPlans: PricingPlan[] = [
 
 const T_GROUP = { ru: "Групповой бокс", ro: "Box de grup", en: "Group boxing" };
 const T_KIDS_59 = { ru: "Дети 5–9 лет", ro: "Copii 5–9 ani", en: "Kids 5–9" };
-const T_KIDS_1016 = {
-  ru: "Дети 10–16 лет",
-  ro: "Copii 10–16 ani",
-  en: "Kids 10–16",
-};
-const T_MINI_GROUP = {
-  ru: "Мини-группа · 3+",
-  ro: "Mini-grup · 3+",
-  en: "Mini group · 3+",
-};
+const T_KIDS_1016 = { ru: "Дети 10–16 лет", ro: "Copii 10–16 ani", en: "Kids 10–16" };
+const T_MINI_GROUP = { ru: "Мини-группа · 3+", ro: "Mini-grup · 3+", en: "Mini group · 3+" };
 const T_WOMEN_MINI = {
   ru: "Мини-группа для девушек",
   ro: "Mini-grup pentru femei",
   en: "Women's mini group",
 };
-const T_PERSONAL = {
-  ru: "Персонально",
-  ro: "Individual",
-  en: "Personal training",
-};
+const T_PERSONAL = { ru: "Персонально", ro: "Individual", en: "Personal training" };
+
+const slot = (
+  id: string,
+  dayOfWeek: number,
+  time: string,
+  title: Record<string, string>,
+  audience: ScheduleSlot["audience"],
+  sortOrder: number,
+  byArrangement = false,
+): ScheduleSlot => ({
+  id,
+  dayOfWeek,
+  time,
+  byArrangement,
+  title,
+  coachId: null,
+  coachName: null,
+  level: null,
+  audience,
+  ageLabel: null,
+  hall: null,
+  note: null,
+  active: true,
+  sortOrder,
+});
 
 export const scheduleSlots: ScheduleSlot[] = [
-  // Monday
-  { id: "mon-1", dayOfWeek: 0, time: "17:00", byArrangement: false, title: T_KIDS_59, coachId: null, audience: "kids", active: true, sortOrder: 1 },
-  { id: "mon-2", dayOfWeek: 0, time: "18:00", byArrangement: false, title: T_KIDS_1016, coachId: null, audience: "kids", active: true, sortOrder: 2 },
-  { id: "mon-3", dayOfWeek: 0, time: "19:00", byArrangement: false, title: T_GROUP, coachId: null, audience: "all", active: true, sortOrder: 3 },
-  // Tuesday
-  { id: "tue-1", dayOfWeek: 1, time: "09:00 / 12:00", byArrangement: false, title: T_MINI_GROUP, coachId: null, audience: "all", active: true, sortOrder: 1 },
-  { id: "tue-2", dayOfWeek: 1, time: "19:00", byArrangement: false, title: T_WOMEN_MINI, coachId: null, audience: "women", active: true, sortOrder: 2 },
-  // Wednesday
-  { id: "wed-1", dayOfWeek: 2, time: "17:00", byArrangement: false, title: T_KIDS_59, coachId: null, audience: "kids", active: true, sortOrder: 1 },
-  { id: "wed-2", dayOfWeek: 2, time: "18:00", byArrangement: false, title: T_KIDS_1016, coachId: null, audience: "kids", active: true, sortOrder: 2 },
-  { id: "wed-3", dayOfWeek: 2, time: "19:00", byArrangement: false, title: T_GROUP, coachId: null, audience: "all", active: true, sortOrder: 3 },
-  // Thursday
-  { id: "thu-1", dayOfWeek: 3, time: "09:00 / 12:00", byArrangement: false, title: T_MINI_GROUP, coachId: null, audience: "all", active: true, sortOrder: 1 },
-  { id: "thu-2", dayOfWeek: 3, time: "19:00", byArrangement: false, title: T_WOMEN_MINI, coachId: null, audience: "women", active: true, sortOrder: 2 },
-  // Friday
-  { id: "fri-1", dayOfWeek: 4, time: "17:00", byArrangement: false, title: T_KIDS_59, coachId: null, audience: "kids", active: true, sortOrder: 1 },
-  { id: "fri-2", dayOfWeek: 4, time: "18:00", byArrangement: false, title: T_KIDS_1016, coachId: null, audience: "kids", active: true, sortOrder: 2 },
-  { id: "fri-3", dayOfWeek: 4, time: "19:00", byArrangement: false, title: T_GROUP, coachId: null, audience: "all", active: true, sortOrder: 3 },
-  // Saturday
-  { id: "sat-1", dayOfWeek: 5, time: "11:00", byArrangement: false, title: T_WOMEN_MINI, coachId: null, audience: "women", active: true, sortOrder: 1 },
-  // Sunday
-  { id: "sun-1", dayOfWeek: 6, time: "", byArrangement: true, title: T_PERSONAL, coachId: null, audience: "all", active: true, sortOrder: 1 },
+  slot("mon-1", 0, "17:00", T_KIDS_59, "kids", 1),
+  slot("mon-2", 0, "18:00", T_KIDS_1016, "kids", 2),
+  slot("mon-3", 0, "19:00", T_GROUP, "all", 3),
+  slot("tue-1", 1, "09:00 / 12:00", T_MINI_GROUP, "all", 1),
+  slot("tue-2", 1, "19:00", T_WOMEN_MINI, "women", 2),
+  slot("wed-1", 2, "17:00", T_KIDS_59, "kids", 1),
+  slot("wed-2", 2, "18:00", T_KIDS_1016, "kids", 2),
+  slot("wed-3", 2, "19:00", T_GROUP, "all", 3),
+  slot("thu-1", 3, "09:00 / 12:00", T_MINI_GROUP, "all", 1),
+  slot("thu-2", 3, "19:00", T_WOMEN_MINI, "women", 2),
+  slot("fri-1", 4, "17:00", T_KIDS_59, "kids", 1),
+  slot("fri-2", 4, "18:00", T_KIDS_1016, "kids", 2),
+  slot("fri-3", 4, "19:00", T_GROUP, "all", 3),
+  slot("sat-1", 5, "11:00", T_WOMEN_MINI, "women", 1),
+  slot("sun-1", 6, "", T_PERSONAL, "all", 1, true),
 ];
 
 export const galleryImages: GalleryImage[] = [
   {
     id: "g1",
     src: "/gallery/gallery-1.webp",
-    width: 1200,
-    height: 905,
     alt: {
       ru: "Ринг и груши в зале Cangur Boxing Club с неоновой подсветкой",
       ro: "Ring și saci de box în sala Cangur Boxing Club, cu iluminare neon",
       en: "Ring and heavy bags at Cangur Boxing Club under neon lighting",
     },
+    caption: null,
     active: true,
     sortOrder: 1,
   },
   {
     id: "g2",
     src: "/gallery/gallery-2.webp",
-    width: 1200,
-    height: 905,
     alt: {
       ru: "Зона отдыха и витрина с экипировкой в Cangur Boxing Club",
       ro: "Zonă de relaxare și vitrină cu echipament la Cangur Boxing Club",
       en: "Lounge area and equipment display at Cangur Boxing Club",
     },
+    caption: null,
     active: true,
     sortOrder: 2,
   },
   {
     id: "g3",
     src: "/gallery/gallery-3.webp",
-    width: 1200,
-    height: 905,
     alt: {
       ru: "Боксёрский ринг с грушами под неоновой рамкой в клубе Cangur",
       ro: "Ring de box cu saci sub o ramă neon în clubul Cangur",
       en: "Boxing ring with bags under a neon frame at Cangur club",
     },
+    caption: null,
     active: true,
     sortOrder: 3,
   },
   {
     id: "g4",
     src: "/gallery/gallery-4.webp",
-    width: 1200,
-    height: 905,
     alt: {
       ru: "Силовая зона со штангой и гантелями рядом с рингом",
       ro: "Zonă de forță cu bară și gantere lângă ring",
       en: "Strength area with barbell and dumbbells next to the ring",
     },
+    caption: null,
     active: true,
     sortOrder: 4,
   },
   {
     id: "g5",
     src: "/gallery/gallery-5.webp",
-    width: 1200,
-    height: 905,
     alt: {
       ru: "Функциональная зона тренировок с кардиотренажёрами и инвентарём",
       ro: "Zonă de antrenament funcțional cu aparate cardio și inventar",
       en: "Functional training area with cardio machines and equipment",
     },
+    caption: null,
     active: true,
     sortOrder: 5,
   },
   {
     id: "g6",
     src: "/gallery/gallery-6.webp",
-    width: 1200,
-    height: 905,
     alt: {
       ru: "Угол ринга с канатами в зале Cangur Boxing Club",
       ro: "Colț de ring cu corzi în sala Cangur Boxing Club",
       en: "Ring corner with ropes at Cangur Boxing Club",
     },
+    caption: null,
     active: true,
     sortOrder: 6,
   },
   {
     id: "g7",
     src: "/gallery/gallery-7.webp",
-    width: 1200,
-    height: 905,
     alt: {
       ru: "Зеркальный зал с отражением ринга и тренажёров",
       ro: "Sală cu oglinzi în care se reflectă ringul și aparatele",
       en: "Mirrored hall reflecting the ring and machines",
     },
+    caption: null,
     active: true,
     sortOrder: 7,
   },
@@ -361,39 +452,45 @@ export const products: Product[] = [
   {
     id: "glove-black",
     slug: "black",
-    title: "12th Round Black",
+    title: { ru: "12th Round Black", ro: "12th Round Black", en: "12th Round Black" },
     spec: { ru: "12 oz · Чёрные", ro: "12 oz · Negre", en: "12 oz · Black" },
+    description: null,
     price: 1300,
+    oldPrice: null,
     currency: "MDL",
     image: "/shop/glove-black.webp",
-    imageWidth: 900,
-    imageHeight: 900,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 1,
   },
   {
     id: "glove-pink",
     slug: "pink",
-    title: "12th Round Pink",
+    title: { ru: "12th Round Pink", ro: "12th Round Pink", en: "12th Round Pink" },
     spec: { ru: "12 oz · Розовые", ro: "12 oz · Roz", en: "12 oz · Pink" },
+    description: null,
     price: 1300,
+    oldPrice: null,
     currency: "MDL",
     image: "/shop/glove-pink.webp",
-    imageWidth: 900,
-    imageHeight: 900,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 2,
   },
   {
     id: "glove-white",
     slug: "white",
-    title: "12th Round White",
+    title: { ru: "12th Round White", ro: "12th Round White", en: "12th Round White" },
     spec: { ru: "12 oz · Белые", ro: "12 oz · Albe", en: "12 oz · White" },
+    description: null,
     price: 1300,
+    oldPrice: null,
     currency: "MDL",
     image: "/shop/glove-white.webp",
-    imageWidth: 900,
-    imageHeight: 900,
+    ctaLabel: null,
+    ctaUrl: null,
     active: true,
     sortOrder: 3,
   },
@@ -408,6 +505,7 @@ export const testimonials: Testimonial[] = [
       en: "“I came with no experience. After a few weeks I already felt real progress.”",
     },
     author: "Alex",
+    avatar: null,
     active: true,
     sortOrder: 1,
   },
@@ -419,6 +517,7 @@ export const testimonials: Testimonial[] = [
       en: "“My child enjoys every session. Great atmosphere and an attentive coach.”",
     },
     author: "Maria",
+    avatar: null,
     active: true,
     sortOrder: 2,
   },
@@ -430,14 +529,11 @@ export const testimonials: Testimonial[] = [
       en: "“Personal training gives very fast progress.”",
     },
     author: "Victor",
+    avatar: null,
     active: true,
     sortOrder: 3,
   },
 ];
 
-/** No coach data existed on the legacy site — the owner adds real
- *  coaches via /admin (STEP 10). Section stays hidden while empty. */
 export const coaches: Coach[] = [];
-
-/** Advertising infrastructure is ready (STEP 11); no campaigns yet. */
 export const advertisements: Advertisement[] = [];

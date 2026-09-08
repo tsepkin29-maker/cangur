@@ -1,13 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-
-/**
- * Analytics sink (stub).
- *
- * STEP 13 replaces the body with a real writer (Vercel Analytics custom
- * event and/or insert into `analytics_events`). For now it validates the
- * shape and returns 204 so the client `track()` helper is already wired.
- */
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { isSupabaseAdminConfigured } from "@/lib/supabase/env";
 
 const EventSchema = z.object({
   event: z.enum([
@@ -22,9 +16,11 @@ const EventSchema = z.object({
     "language_change",
     "cta_click",
   ]),
-  meta: z.record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.null()])).default({}),
-  path: z.string().max(512),
-  ts: z.number(),
+  meta: z
+    .record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.null()]))
+    .default({}),
+  path: z.string().max(512).default(""),
+  ts: z.number().optional(),
 });
 
 export async function POST(request: Request) {
@@ -36,10 +32,22 @@ export async function POST(request: Request) {
   }
 
   const parsed = EventSchema.safeParse(body);
-  if (!parsed.success) {
-    return new NextResponse(null, { status: 422 });
+  if (!parsed.success) return new NextResponse(null, { status: 422 });
+
+  if (isSupabaseAdminConfigured) {
+    try {
+      const supabase = createSupabaseAdminClient();
+      const localeMatch = parsed.data.path.match(/^\/(ru|ro|en)(\/|$)/);
+      await supabase.from("analytics_events").insert({
+        name: parsed.data.event,
+        path: parsed.data.path,
+        locale: localeMatch?.[1] ?? null,
+        meta: parsed.data.meta,
+      });
+    } catch {
+      // analytics must never break anything
+    }
   }
 
-  // TODO(STEP 13): persist parsed.data
   return new NextResponse(null, { status: 204 });
 }

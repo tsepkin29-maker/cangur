@@ -2,8 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getScheduleSlots } from "@/lib/content";
-import { pick } from "@/lib/i18n";
-import { AdSlot } from "./AdSlot";
+import { pick, pickMaybe } from "@/lib/i18n";
 import { SectionView } from "./SectionView";
 
 export async function Schedule() {
@@ -13,12 +12,11 @@ export async function Schedule() {
     getScheduleSlots(),
   ]);
 
+  if (slots.length === 0) return null;
+
   const weekdays = t.raw("weekdays") as string[];
   const days = weekdays
-    .map((name, i) => ({
-      name,
-      slots: slots.filter((s) => s.dayOfWeek === i),
-    }))
+    .map((name, i) => ({ name, slots: slots.filter((s) => s.dayOfWeek === i) }))
     .filter((d) => d.slots.length > 0);
 
   return (
@@ -30,7 +28,7 @@ export async function Schedule() {
         <span className="text-[13px] font-extrabold text-muted">
           {t("workHours")}
         </span>
-        <strong className="text-lg font-black whitespace-nowrap">
+        <strong className="whitespace-nowrap text-lg font-black">
           {t("hours")}
         </strong>
       </div>
@@ -43,24 +41,43 @@ export async function Schedule() {
           >
             <h3 className="mb-2.5 text-sm font-black">{day.name}</h3>
             <ul className="divide-y divide-line">
-              {day.slots.map((slot) => (
-                <li key={slot.id} className="py-2 first:pt-0 last:pb-0">
-                  <span className="block text-[13px] font-black">
-                    {slot.byArrangement ? t("byArrangement") : slot.time}
-                  </span>
-                  <span className="mt-0.5 block text-[11px] leading-snug text-faint">
-                    {pick(slot.title, locale)}
-                  </span>
-                </li>
-              ))}
+              {day.slots.map((slot) => {
+                const level = pickMaybe(slot.level, locale);
+                const age = pickMaybe(slot.ageLabel, locale);
+                const note = pickMaybe(slot.note, locale);
+                const meta = [
+                  slot.coachName,
+                  level,
+                  age,
+                  slot.hall,
+                ].filter(Boolean);
+                return (
+                  <li key={slot.id} className="py-2 first:pt-0 last:pb-0">
+                    <span className="block text-[13px] font-black">
+                      {slot.byArrangement ? t("byArrangement") : slot.time}
+                    </span>
+                    <span className="mt-0.5 block text-[11px] leading-snug text-faint">
+                      {pick(slot.title, locale)}
+                    </span>
+                    {meta.length > 0 ? (
+                      <span className="mt-0.5 block text-[11px] leading-snug text-muted">
+                        {meta.join(" · ")}
+                      </span>
+                    ) : null}
+                    {note ? (
+                      <span className="mt-0.5 block text-[11px] italic leading-snug text-faint">
+                        {note}
+                      </span>
+                    ) : null}
+                  </li>
+                );
+              })}
             </ul>
           </li>
         ))}
       </ul>
 
       <p className="mt-4 max-w-[60ch] text-sm text-muted">{t("note")}</p>
-
-      <AdSlot placement="schedule" className="mt-8" />
     </Section>
   );
 }

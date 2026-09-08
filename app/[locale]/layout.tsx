@@ -6,11 +6,13 @@ import { Inter, Onest } from "next/font/google";
 
 import { routing } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/seo";
+import { pick } from "@/lib/i18n";
+import { getCoaches, getSettings } from "@/lib/content";
+import { AnnouncementBar } from "@/components/site/AnnouncementBar";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCallBar } from "@/components/site/MobileCallBar";
 import { ScrollProgress } from "@/components/site/ScrollProgress";
-import { getCoaches, getSettings } from "@/lib/content";
 
 import "../globals.css";
 
@@ -39,7 +41,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
-  const t = await getTranslations({ locale, namespace: "meta" });
+
+  const settings = await getSettings();
+  const title =
+    pick(settings.seo.title, locale) || `${settings.clubName} — Chișinău`;
+  const description = pick(settings.seo.description, locale) || settings.clubName;
+  const ogTitle = pick(settings.seo.ogTitle, locale) || title;
+  const ogDescription =
+    pick(settings.seo.ogDescription, locale) || description;
+  const ogImage = settings.ogImageUrl || "/brand/og-image.jpg";
 
   const languages = Object.fromEntries(
     routing.locales.map((l) => [l, `/${l}`]),
@@ -47,33 +57,26 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: t("title"),
-    description: t("description"),
+    title,
+    description,
     alternates: {
       canonical: `/${locale}`,
       languages: { ...languages, "x-default": `/${routing.defaultLocale}` },
     },
     openGraph: {
       type: "website",
-      siteName: "Cangur Boxing Club & Gym",
-      title: t("title"),
-      description: t("description"),
+      siteName: settings.clubName,
+      title: ogTitle,
+      description: ogDescription,
       url: `/${locale}`,
       locale: locale === "ru" ? "ru_RU" : locale === "ro" ? "ro_RO" : "en_US",
-      images: [
-        {
-          url: "/brand/og-image.jpg",
-          width: 1200,
-          height: 630,
-          alt: t("ogAlt"),
-        },
-      ],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: settings.clubName }],
     },
     twitter: {
       card: "summary_large_image",
-      title: t("title"),
-      description: t("description"),
-      images: ["/brand/og-image.jpg"],
+      title: ogTitle,
+      description: ogDescription,
+      images: [ogImage],
     },
   };
 }
@@ -89,11 +92,13 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  const [t, settings, coaches] = await Promise.all([
+  const [t, tNav, settings, coaches] = await Promise.all([
     getTranslations({ locale, namespace: "a11y" }),
+    getTranslations({ locale, namespace: "nav" }),
     getSettings(),
     getCoaches(),
   ]);
+  const callLabel = pick(settings.ctaCallLabel, locale) || tNav("call");
 
   return (
     <html lang={locale} className={`${onest.variable} ${inter.variable}`}>
@@ -106,10 +111,15 @@ export default async function LocaleLayout({
             {t("skipToContent")}
           </a>
           <ScrollProgress label={t("scrollProgress")} />
-          <Header settings={settings} showCoaches={coaches.length > 0} />
+          <AnnouncementBar />
+          <Header showCoaches={coaches.length > 0} />
           <main id="main">{children}</main>
           <Footer settings={settings} />
-          <MobileCallBar settings={settings} />
+          <MobileCallBar
+            phone={settings.phone}
+            phoneDisplay={settings.phoneDisplay}
+            label={callLabel}
+          />
         </NextIntlClientProvider>
       </body>
     </html>

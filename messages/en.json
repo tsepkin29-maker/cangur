@@ -27,10 +27,22 @@
     "title": "CHOOSE YOUR TRAINING",
     "srSuffix": " — boxing club in Chișinău, Botanica district",
     "items": {
-      "men": { "title": "Men's boxing", "text": "Technique, bags, pads, endurance and sparring." },
-      "women": { "title": "Women's boxing", "text": "Strength, coordination, fitness and confidence." },
-      "kids": { "title": "Kids boxing", "text": "Discipline, reactions and safe technique." },
-      "personal": { "title": "Personal training", "text": "Individual plan and one-to-one coaching." }
+      "men": {
+        "title": "Men's boxing",
+        "text": "Technique, bags, pads, endurance and sparring."
+      },
+      "women": {
+        "title": "Women's boxing",
+        "text": "Strength, coordination, fitness and confidence."
+      },
+      "kids": {
+        "title": "Kids boxing",
+        "text": "Discipline, reactions and safe technique."
+      },
+      "personal": {
+        "title": "Personal training",
+        "text": "Individual plan and one-to-one coaching."
+      }
     }
   },
   "gallery": {
@@ -56,7 +68,15 @@
     "hours": "07:00 — 21:00",
     "byArrangement": "By arrangement",
     "note": "Personal training and the 2-person mini class are scheduled by arrangement.",
-    "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    "weekdays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ]
   },
   "testimonials": {
     "kicker": "REVIEWS",
@@ -70,7 +90,8 @@
   },
   "coaches": {
     "kicker": "THE TEAM",
-    "title": "Coaches"
+    "title": "Coaches",
+    "contact": "Message"
   },
   "contacts": {
     "kicker": "FIND US",
@@ -87,5 +108,9 @@
   "a11y": {
     "skipToContent": "Skip to content",
     "scrollProgress": "Page scroll progress"
+  },
+  "ads": {
+    "advertisement": "Advertisement",
+    "partner": "Partner"
   }
 }

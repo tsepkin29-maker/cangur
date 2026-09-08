@@ -1,12 +1,22 @@
-import createMiddleware from "next-intl/middleware";
+import createIntlMiddleware from "next-intl/middleware";
+import type { NextRequest } from "next/server";
 import { routing } from "./i18n/routing";
+import { updateAdminSession } from "./lib/supabase/middleware";
 
-// Next.js 16 renamed the "middleware" convention to "proxy".
-// next-intl's handler is unchanged — it redirects "/" to the default
-// locale and rewrites "/ru" | "/ro" | "/en" requests.
-export default createMiddleware(routing);
+const intlMiddleware = createIntlMiddleware(routing);
+
+/**
+ * Next.js 16 "proxy" (formerly middleware).
+ *   - /admin/**  → Supabase session refresh + admin gate
+ *   - everything else → next-intl locale routing ("/" → "/ru", etc.)
+ */
+export default function proxy(request: NextRequest) {
+  if (request.nextUrl.pathname.startsWith("/admin")) {
+    return updateAdminSession(request);
+  }
+  return intlMiddleware(request);
+}
 
 export const config = {
-  // Run on every path except Next internals, API routes and files with an extension.
   matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };

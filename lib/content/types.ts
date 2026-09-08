@@ -1,48 +1,93 @@
 /**
- * Row-shaped content types.
+ * Domain content types consumed by the public site.
  *
- * These deliberately mirror the future Postgres/Supabase schema
- * (see supabase/migrations/0001_init.sql). Until STEP 7–8, the data
- * is served from lib/content/seed.ts; after that the getters in
- * lib/content/index.ts will query Supabase and return the same shapes,
- * so no component needs to change.
+ * They map 1:1 onto the CMS tables (supabase/migrations/0001_init.sql) via
+ * lib/content/map.ts. Until Supabase is configured the same shapes are
+ * served from lib/content/seed.ts.
  */
 
 import type { Locale } from "@/i18n/routing";
 
-/** Localized string: one value per supported locale. */
-export type Localized = Record<Locale, string>;
+/** Localised text. May be partial — `pick()` falls back gracefully. */
+export type Localized = Partial<Record<Locale, string>>;
 
 export interface SiteSettings {
+  clubName: string;
   phone: string;
   phoneDisplay: string;
-  instagramUrl: string;
-  instagramHandle: string;
+  phoneSecondary: string | null;
+  email: string | null;
+  instagramUrl: string | null;
+  instagramHandle: string | null;
   telegramUrl: string | null;
+  facebookUrl: string | null;
   addressLine: Localized;
-  mapUrl: string;
+  mapUrl: string | null;
   workHours: Localized;
-  hoursOpen: string; // "07:00"
-  hoursClose: string; // "21:00"
-  priceRange: string; // schema.org priceRange
-  announcement: { text: Localized; active: boolean } | null;
+  hoursOpen: string;
+  hoursClose: string;
+  locationImageUrl: string | null;
+  currency: string;
+  priceRange: string;
+  ctaCallLabel: Localized;
+  routeCtaLabel: Localized;
+  bookCtaLabel: Localized;
+  defaultCtaLabel: Localized;
+  defaultCtaUrl: string | null;
+  announcement: { text: Localized; url: string | null; active: boolean };
+  logoUrl: string | null;
+  ogImageUrl: string | null;
+  seo: {
+    title: Localized;
+    description: Localized;
+    ogTitle: Localized;
+    ogDescription: Localized;
+  };
 }
 
-export type ProgramType = "men" | "women" | "kids" | "personal";
+export interface Hero {
+  kicker: Localized;
+  headline: Localized;
+  subtitle: Localized;
+  ctaLabel: Localized;
+  ctaUrl: string;
+  ctaEnabled: boolean;
+  videoEnabled: boolean;
+  posterUrl: string;
+  videoDesktopUrl: string | null;
+  videoMobileUrl: string | null;
+}
+
+export type NavKey =
+  | "programs"
+  | "gallery"
+  | "prices"
+  | "shop"
+  | "schedule"
+  | "coaches"
+  | "contacts";
+
+export interface NavItem {
+  key: NavKey;
+  label: Localized; // empty -> use i18n default
+  visible: boolean;
+  sortOrder: number;
+}
 
 export interface Program {
   id: string;
-  type: ProgramType;
+  slug: string;
   title: Localized;
   text: Localized;
   image: string;
-  imageWidth: number;
-  imageHeight: number;
+  badge: Localized | null;
+  ctaLabel: Localized | null;
+  ctaUrl: string | null;
   active: boolean;
   sortOrder: number;
 }
 
-export type PricePeriod = "month" | "session" | "package";
+export type PricePeriod = "month" | "session" | "package" | "custom";
 
 export interface PricingPlan {
   id: string;
@@ -51,11 +96,14 @@ export interface PricingPlan {
   description: Localized | null;
   price: number;
   oldPrice: number | null;
-  currency: string; // "MDL"
+  currency: string;
   period: PricePeriod;
+  periodLabel: Localized | null;
   sessionsCount: number | null;
   badge: Localized | null;
   featured: boolean;
+  ctaLabel: Localized | null;
+  ctaUrl: string | null;
   active: boolean;
   sortOrder: number;
 }
@@ -65,11 +113,16 @@ export type ScheduleAudience = "all" | "men" | "women" | "kids";
 export interface ScheduleSlot {
   id: string;
   dayOfWeek: number; // 0 = Monday … 6 = Sunday
-  time: string; // "19:00" | "09:00 / 12:00" | "" when by arrangement
+  time: string;
   byArrangement: boolean;
   title: Localized;
   coachId: string | null;
+  coachName: string | null;
+  level: Localized | null;
   audience: ScheduleAudience;
+  ageLabel: Localized | null;
+  hall: string | null;
+  note: Localized | null;
   active: boolean;
   sortOrder: number;
 }
@@ -80,7 +133,10 @@ export interface Coach {
   photo: string | null;
   role: Localized;
   bio: Localized | null;
+  experience: string | null;
+  achievements: Localized | null;
   instagramUrl: string | null;
+  ctaUrl: string | null;
   active: boolean;
   sortOrder: number;
 }
@@ -88,9 +144,8 @@ export interface Coach {
 export interface GalleryImage {
   id: string;
   src: string;
-  width: number;
-  height: number;
   alt: Localized;
+  caption: Localized | null;
   active: boolean;
   sortOrder: number;
 }
@@ -98,13 +153,15 @@ export interface GalleryImage {
 export interface Product {
   id: string;
   slug: string;
-  title: string;
+  title: Localized;
   spec: Localized;
+  description: Localized | null;
   price: number;
+  oldPrice: number | null;
   currency: string;
   image: string;
-  imageWidth: number;
-  imageHeight: number;
+  ctaLabel: Localized | null;
+  ctaUrl: string | null;
   active: boolean;
   sortOrder: number;
 }
@@ -113,28 +170,37 @@ export interface Testimonial {
   id: string;
   text: Localized;
   author: string;
+  avatar: string | null;
   active: boolean;
   sortOrder: number;
 }
 
 export type AdPlacement =
-  | "home_top"
-  | "home_middle"
-  | "pricing"
-  | "schedule"
+  | "after_hero"
+  | "after_programs"
+  | "after_gallery"
+  | "after_pricing"
+  | "after_schedule"
+  | "before_contacts"
   | "footer";
+
+export type AdLabelType = "advertisement" | "partner";
 
 export interface Advertisement {
   id: string;
-  title: string;
-  subtitle: string | null;
-  image: string;
-  mobileImage: string | null;
-  targetUrl: string;
+  campaignName: string;
   sponsorName: string | null;
+  logo: string | null;
+  desktopImage: string;
+  mobileImage: string | null;
+  title: Localized;
+  subtitle: Localized | null;
+  ctaLabel: Localized | null;
+  targetUrl: string;
   placement: AdPlacement;
-  priority: number;
+  labelType: AdLabelType;
   startDate: string | null;
   endDate: string | null;
+  priority: number;
   active: boolean;
 }

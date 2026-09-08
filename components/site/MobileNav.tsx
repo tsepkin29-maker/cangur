@@ -2,18 +2,19 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import type { SiteSettings } from "@/lib/content/types";
 import { track } from "@/lib/analytics";
 import { LangSwitcher } from "./LangSwitcher";
 
-type Item = { id: string; key: string };
+type Item = { key: string; label: string };
 
 export function MobileNav({
-  settings,
   items,
+  phone,
+  callLabel,
 }: {
-  settings: SiteSettings;
-  items: ReadonlyArray<Item>;
+  items: Item[];
+  phone: string;
+  callLabel: string;
 }) {
   const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
@@ -30,12 +31,12 @@ export function MobileNav({
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
       if (e.key === "Tab" && panelRef.current) {
-        const focusables = panelRef.current.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled])',
+        const f = panelRef.current.querySelectorAll<HTMLElement>(
+          "a[href], button:not([disabled])",
         );
-        if (focusables.length === 0) return;
-        const first = focusables[0];
-        const last = focusables[focusables.length - 1];
+        if (f.length === 0) return;
+        const first = f[0];
+        const last = f[f.length - 1];
         if (e.shiftKey && document.activeElement === first) {
           e.preventDefault();
           last.focus();
@@ -104,26 +105,26 @@ export function MobileNav({
             <nav className="flex flex-col divide-y divide-line">
               {items.map((item) => (
                 <a
-                  key={item.id}
-                  href={`#${item.id}`}
+                  key={item.key}
+                  href={`#${item.key}`}
                   onClick={() => setOpen(false)}
                   className="py-4 font-display text-2xl font-black uppercase tracking-tight"
                 >
-                  {t(item.key)}
+                  {item.label}
                 </a>
               ))}
             </nav>
             <div className="mt-6 flex items-center justify-between gap-4">
               <LangSwitcher />
               <a
-                href={`tel:${settings.phone}`}
+                href={`tel:${phone}`}
                 onClick={() => {
                   track("phone_click", { source: "mobile_menu" });
                   setOpen(false);
                 }}
                 className="rounded-xl bg-red px-4 py-3 text-sm font-black text-white"
               >
-                {t("call")}
+                {callLabel}
               </a>
             </div>
           </div>

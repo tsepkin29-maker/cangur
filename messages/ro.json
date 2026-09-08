@@ -27,10 +27,22 @@
     "title": "ALEGE ANTRENAMENTUL",
     "srSuffix": " — club de box în Chișinău, sectorul Botanica",
     "items": {
-      "men": { "title": "Box pentru bărbați", "text": "Tehnică, sac, palmare, rezistență și sparring." },
-      "women": { "title": "Box feminin", "text": "Forță, coordonare, formă și încredere." },
-      "kids": { "title": "Box pentru copii", "text": "Disciplină, reacție și tehnică sigură." },
-      "personal": { "title": "Individual", "text": "Plan individual și lucru unu la unu." }
+      "men": {
+        "title": "Box pentru bărbați",
+        "text": "Tehnică, sac, palmare, rezistență și sparring."
+      },
+      "women": {
+        "title": "Box feminin",
+        "text": "Forță, coordonare, formă și încredere."
+      },
+      "kids": {
+        "title": "Box pentru copii",
+        "text": "Disciplină, reacție și tehnică sigură."
+      },
+      "personal": {
+        "title": "Individual",
+        "text": "Plan individual și lucru unu la unu."
+      }
     }
   },
   "gallery": {
@@ -56,7 +68,15 @@
     "hours": "07:00 — 21:00",
     "byArrangement": "La înțelegere",
     "note": "Antrenamentele individuale și mini-clasa pentru 2 persoane — ora se stabilește de comun acord.",
-    "weekdays": ["Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă", "Duminică"]
+    "weekdays": [
+      "Luni",
+      "Marți",
+      "Miercuri",
+      "Joi",
+      "Vineri",
+      "Sâmbătă",
+      "Duminică"
+    ]
   },
   "testimonials": {
     "kicker": "RECENZII",
@@ -70,7 +90,8 @@
   },
   "coaches": {
     "kicker": "ECHIPA",
-    "title": "Antrenori"
+    "title": "Antrenori",
+    "contact": "Scrie"
   },
   "contacts": {
     "kicker": "CUM NE GĂSEȘTI",
@@ -87,5 +108,9 @@
   "a11y": {
     "skipToContent": "Sari la conținut",
     "scrollProgress": "Progresul derulării paginii"
+  },
+  "ads": {
+    "advertisement": "Publicitate",
+    "partner": "Partener"
   }
 }

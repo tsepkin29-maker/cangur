@@ -28,25 +28,42 @@ export function RouteButton({
   );
 }
 
+type Labels = {
+  phone: string;
+  instagram: string;
+  address: string;
+  telegram: string;
+  email: string;
+};
+
 export function ContactLinks({
   labels,
   phone,
   phoneDisplay,
+  phoneSecondary,
+  email,
   instagramUrl,
   instagramHandle,
+  telegramUrl,
   mapUrl,
   address,
 }: {
-  labels: { phone: string; instagram: string; address: string };
+  labels: Labels;
   phone: string;
   phoneDisplay: string;
-  instagramUrl: string;
-  instagramHandle: string;
-  mapUrl: string;
+  phoneSecondary: string | null;
+  email: string | null;
+  instagramUrl: string | null;
+  instagramHandle: string | null;
+  telegramUrl: string | null;
+  mapUrl: string | null;
   address: string;
 }) {
   const row =
     "flex items-center justify-between gap-4 border-b border-line py-3.5 font-bold last:border-b-0 hover:text-red-soft";
+  const label =
+    "text-[13px] font-extrabold uppercase tracking-wide text-faint";
+
   return (
     <div className="rounded-card border border-line bg-panel p-5">
       <a
@@ -54,35 +71,70 @@ export function ContactLinks({
         onClick={() => track("phone_click", { source: "contacts" })}
         className={row}
       >
-        <span className="text-[13px] font-extrabold uppercase tracking-wide text-faint">
-          {labels.phone}
-        </span>
+        <span className={label}>{labels.phone}</span>
         <span>{phoneDisplay}</span>
       </a>
-      <a
-        href={instagramUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => track("instagram_click", { source: "contacts" })}
-        className={row}
-      >
-        <span className="text-[13px] font-extrabold uppercase tracking-wide text-faint">
-          {labels.instagram}
-        </span>
-        <span>{instagramHandle}</span>
-      </a>
-      <a
-        href={mapUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => track("maps_click", { source: "contacts" })}
-        className={row}
-      >
-        <span className="text-[13px] font-extrabold uppercase tracking-wide text-faint">
-          {labels.address}
-        </span>
-        <span className="text-right">{address}</span>
-      </a>
+
+      {phoneSecondary ? (
+        <a
+          href={`tel:${phoneSecondary}`}
+          onClick={() => track("phone_click", { source: "contacts_2" })}
+          className={row}
+        >
+          <span className={label}>{labels.phone}</span>
+          <span>{phoneSecondary}</span>
+        </a>
+      ) : null}
+
+      {email ? (
+        <a href={`mailto:${email}`} className={row}>
+          <span className={label}>{labels.email}</span>
+          <span>{email}</span>
+        </a>
+      ) : null}
+
+      {instagramUrl ? (
+        <a
+          href={instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track("instagram_click", { source: "contacts" })}
+          className={row}
+        >
+          <span className={label}>{labels.instagram}</span>
+          <span>{instagramHandle ?? "Instagram"}</span>
+        </a>
+      ) : null}
+
+      {telegramUrl ? (
+        <a
+          href={telegramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={row}
+        >
+          <span className={label}>{labels.telegram}</span>
+          <span>{telegramUrl.replace(/^https?:\/\/(t\.me\/)?/, "@")}</span>
+        </a>
+      ) : null}
+
+      {mapUrl ? (
+        <a
+          href={mapUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track("maps_click", { source: "contacts" })}
+          className={row}
+        >
+          <span className={label}>{labels.address}</span>
+          <span className="text-right">{address}</span>
+        </a>
+      ) : (
+        <div className={row}>
+          <span className={label}>{labels.address}</span>
+          <span className="text-right">{address}</span>
+        </div>
+      )}
     </div>
   );
 }

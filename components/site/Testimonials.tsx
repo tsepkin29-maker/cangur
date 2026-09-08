@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -25,7 +26,18 @@ export async function Testimonials() {
             <p className="leading-relaxed text-[#ccc]">
               {pick(item.text, locale)}
             </p>
-            <p className="mt-3.5 font-black">— {item.author}</p>
+            <div className="mt-3.5 flex items-center gap-2.5">
+              {item.avatar ? (
+                <Image
+                  src={item.avatar}
+                  alt={item.author}
+                  width={36}
+                  height={36}
+                  className="h-9 w-9 rounded-full object-cover"
+                />
+              ) : null}
+              <span className="font-black">— {item.author}</span>
+            </div>
           </li>
         ))}
       </ul>

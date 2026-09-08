@@ -3,13 +3,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 
-type Img = {
-  id: string;
-  src: string;
-  width: number;
-  height: number;
-  alt: string;
-};
+type Img = { id: string; src: string; alt: string; caption: string | null };
 
 export function GalleryScroller({
   images,
@@ -68,6 +62,11 @@ export function GalleryScroller({
               loading={i === 0 ? "eager" : "lazy"}
               className="object-cover"
             />
+            {img.caption ? (
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-[13px] font-bold">
+                {img.caption}
+              </figcaption>
+            ) : null}
           </li>
         ))}
       </ul>
