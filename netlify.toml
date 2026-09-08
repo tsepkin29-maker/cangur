@@ -10,6 +10,11 @@
 
 [build]
   command = "npm run build"
+  # The Next.js Runtime plugin serves SSR/RSC from the framework output.
+  # An explicit publish dir is required so it isn't left equal to the repo
+  # root (which the plugin rejects: "publish directory cannot be the same
+  # as the base directory").
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "22"
