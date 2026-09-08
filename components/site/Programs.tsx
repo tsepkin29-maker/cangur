@@ -17,7 +17,7 @@ export async function Programs() {
         <p className="text-[11px] font-black uppercase tracking-[0.17em] text-red-soft">
           {t("kicker")}
         </p>
-        <h1 className="mt-2.5 max-w-[16ch] font-display text-[clamp(2.6rem,7vw,5.4rem)] font-black uppercase leading-[0.85] tracking-[-0.05em]">
+        <h1 className="mt-2.5 max-w-[18ch] font-display text-[clamp(1.9rem,8vw,5.4rem)] font-black uppercase leading-[0.85] tracking-[-0.05em] [overflow-wrap:break-word]">
           {t("title")}
           <span className="sr-only">{t("srSuffix")}</span>
         </h1>

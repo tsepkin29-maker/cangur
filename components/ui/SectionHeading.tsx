@@ -26,7 +26,7 @@ export function SectionHeading({
       <p className="text-[11px] font-black uppercase tracking-[0.17em] text-red-soft">
         {kicker}
       </p>
-      <As className="mt-2 font-display text-[clamp(2.4rem,6vw,3.9rem)] font-black uppercase leading-[0.92] tracking-[-0.045em]">
+      <As className="mt-2 font-display text-[clamp(2rem,7vw,3.9rem)] font-black uppercase leading-[0.92] tracking-[-0.045em] [overflow-wrap:break-word]">
         {title}
         {srSuffix ? <span className="sr-only">{srSuffix}</span> : null}
       </As>
