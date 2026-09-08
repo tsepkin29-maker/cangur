@@ -22,8 +22,10 @@ export async function Programs() {
         </p>
         <h1 className="mt-2.5 max-w-[18ch] font-display text-[clamp(1.9rem,8vw,5.4rem)] font-black uppercase leading-[0.85] tracking-[-0.05em] [overflow-wrap:break-word]">
           {t("title")}
-          <span className="sr-only">{t("srSuffix")}</span>
         </h1>
+        <p className="mt-3.5 max-w-[54ch] text-sm leading-relaxed text-muted">
+          {t("intro")}
+        </p>
       </div>
 
       <ul className="snap-x -mx-[var(--site-gutter)] px-[var(--site-gutter)] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-3.5 sm:overflow-visible sm:px-0 lg:grid-cols-4">
@@ -51,9 +53,9 @@ export async function Programs() {
                 </div>
               ) : null}
               <div className="absolute inset-x-5 bottom-5 z-[2]">
-                <h3 className="font-display text-[1.55rem] font-black tracking-[-0.035em]">
+                <h2 className="font-display text-[1.55rem] font-black tracking-[-0.035em]">
                   {pick(p.title, locale)}
-                </h3>
+                </h2>
                 <p className="mt-1.5 max-w-[28ch] text-[13px] leading-snug text-[#bbb]">
                   {pick(p.text, locale)}
                 </p>

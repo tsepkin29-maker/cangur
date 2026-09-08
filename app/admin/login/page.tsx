@@ -33,8 +33,13 @@ function LoginForm() {
     e.preventDefault();
     setBusy(true);
     setMsg(null);
+    // allow a bare username (e.g. "admincangur") — resolve it to an email
+    const identifier = email.includes("@") ? email : `${email}@cangur.md`;
     const supabase = createSupabaseBrowserClient();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({
+      email: identifier,
+      password,
+    });
     setBusy(false);
     if (error) {
       setMsg("Неверный email или пароль.");
@@ -50,8 +55,9 @@ function LoginForm() {
       return;
     }
     setBusy(true);
+    const identifier = email.includes("@") ? email : `${email}@cangur.md`;
     const supabase = createSupabaseBrowserClient();
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    const { error } = await supabase.auth.resetPasswordForEmail(identifier, {
       redirectTo: `${window.location.origin}/admin/auth/callback?next=/admin/account`,
     });
     setBusy(false);
@@ -65,10 +71,12 @@ function LoginForm() {
   return (
     <form onSubmit={signIn} className="flex flex-col gap-4">
       <label className="flex flex-col gap-1.5">
-        <span className="text-[13px] font-bold text-[var(--a-muted)]">Email</span>
+        <span className="text-[13px] font-bold text-[var(--a-muted)]">
+          Логин или email
+        </span>
         <input
           className="a-input"
-          type="email"
+          type="text"
           autoComplete="username"
           value={email}
           onChange={(e) => setEmail(e.target.value)}

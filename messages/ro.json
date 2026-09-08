@@ -25,7 +25,6 @@
   "programs": {
     "kicker": "CANGUR · CHIȘINĂU",
     "title": "ALEGE ANTRENAMENTUL",
-    "srSuffix": " — club de box în Chișinău, sectorul Botanica",
     "items": {
       "men": {
         "title": "Box pentru bărbați",
@@ -43,7 +42,8 @@
         "title": "Individual",
         "text": "Plan individual și lucru unu la unu."
       }
-    }
+    },
+    "intro": "Cangur — club de box în Chișinău, sectorul Botanica. Antrenamente de grup și individuale de box pentru adulți, femei și copii."
   },
   "gallery": {
     "kicker": "ÎN INTERIORUL CLUBULUI",
@@ -103,7 +103,8 @@
     "routeCta": "Deschide traseul"
   },
   "footer": {
-    "rights": "© {year} Cangur Boxing Club & Gym"
+    "rights": "© {year} Cangur Boxing Club & Gym",
+    "about": "Club de box Cangur în Chișinău, sectorul Botanica. Antrenamente de grup și individuale de box pentru adulți, femei și copii."
   },
   "a11y": {
     "skipToContent": "Sari la conținut",

@@ -2,10 +2,9 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { hasLocale } from "next-intl";
 
-import { routing } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
 import { getSettings } from "@/lib/content";
-import { buildLocalBusinessJsonLd } from "@/lib/seo";
-import { pick } from "@/lib/i18n";
+import { buildLocalBusinessJsonLd, resolveSeo } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 
 import { Hero } from "@/components/site/Hero";
@@ -33,9 +32,12 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   const settings = await getSettings();
-  const description =
-    pick(settings.seo.description, locale) || settings.clubName;
-  const jsonLd = buildLocalBusinessJsonLd(settings, locale, description);
+  const seo = resolveSeo(settings, locale as Locale);
+  const jsonLd = buildLocalBusinessJsonLd(
+    settings,
+    locale as Locale,
+    seo.description,
+  );
 
   return (
     <>

@@ -32,7 +32,7 @@ export async function Hero() {
           </p>
         ) : null}
         {headline ? (
-          <p className="headline-pulse mt-2.5 font-display text-[clamp(3rem,10vw,8rem)] font-black uppercase leading-[0.8] tracking-[-0.065em] [overflow-wrap:break-word]">
+          <p className="mt-2.5 font-display text-[clamp(3rem,10vw,8rem)] font-black uppercase leading-[0.8] tracking-[-0.065em] [text-shadow:0_0_28px_rgba(225,19,56,0.14)] [overflow-wrap:break-word]">
             {headline}
           </p>
         ) : null}

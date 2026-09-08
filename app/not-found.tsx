@@ -1,8 +1,13 @@
 import Link from "next/link";
 
+export const metadata = { robots: { index: false, follow: true } };
+
 export default function NotFound() {
   return (
     <html lang="ru">
+      <head>
+        <meta name="robots" content="noindex, follow" />
+      </head>
       <body
         style={{
           margin: 0,

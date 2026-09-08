@@ -70,14 +70,14 @@ export const settings: SiteSettings = {
   ogImageUrl: null,
   seo: {
     title: {
-      ru: "Cangur Boxing Club & Gym — бокс в Кишинёве, Ботаника",
-      ro: "Cangur Boxing Club & Gym — box în Chișinău, Botanica",
-      en: "Cangur Boxing Club & Gym — boxing in Chișinău, Botanica",
+      ru: "Cangur — боксёрский клуб в Кишинёве | Тренировки по боксу",
+      ro: "Cangur — club de box în Chișinău | Antrenamente de box",
+      en: "Cangur Boxing Club Chișinău | Boxing Training & Gym",
     },
     description: {
-      ru: "Cangur Boxing Club & Gym — мужской, женский и детский бокс, персональные тренировки в Кишинёве (Ботаника). Абонемент от 1000 MDL.",
-      ro: "Cangur Boxing Club & Gym — box pentru bărbați, femei și copii, antrenamente individuale în Chișinău (Botanica). Abonament de la 1000 MDL.",
-      en: "Cangur Boxing Club & Gym — men's, women's and kids' boxing, personal training in Chișinău (Botanica). Membership from 1000 MDL.",
+      ru: "Боксёрский клуб Cangur в Кишинёве, район Ботаника. Групповые и персональные тренировки по боксу для взрослых, девушек и детей. Абонемент от 1000 MDL.",
+      ro: "Club de box Cangur în Chișinău, sectorul Botanica. Antrenamente de grup și individuale de box pentru adulți, femei și copii. Abonament de la 1000 MDL.",
+      en: "Cangur boxing club in Chișinău, Botanica district. Group and personal boxing training for adults, women and kids. Membership from 1000 MDL.",
     },
     ogTitle: {},
     ogDescription: {},

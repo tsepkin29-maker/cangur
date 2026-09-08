@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Inter, Onest } from "next/font/google";
 
 import { routing } from "@/i18n/routing";
-import { SITE_URL } from "@/lib/seo";
+import { SITE_URL, resolveSeo, ogLocale } from "@/lib/seo";
 import { pick } from "@/lib/i18n";
 import { getCoaches, getSettings } from "@/lib/content";
 import { AnnouncementBar } from "@/components/site/AnnouncementBar";
@@ -17,18 +17,22 @@ import { ScrollProgress } from "@/components/site/ScrollProgress";
 
 import "../globals.css";
 
+// Display type — used for the LCP headline, so this one is preloaded.
 const onest = Onest({
   subsets: ["latin", "latin-ext", "cyrillic"],
-  weight: ["500", "600", "700", "800", "900"],
+  weight: ["700", "800", "900"],
   variable: "--font-onest",
   display: "swap",
 });
 
+// Body / UI — below the fold on first paint, so skip the preload to keep
+// bandwidth for the hero on slow connections.
 const inter = Inter({
   subsets: ["latin", "latin-ext", "cyrillic"],
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-inter",
   display: "swap",
+  preload: false,
 });
 
 export function generateStaticParams() {
@@ -44,40 +48,41 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
 
   const settings = await getSettings();
-  const title =
-    pick(settings.seo.title, locale) || `${settings.clubName} — Chișinău`;
-  const description = pick(settings.seo.description, locale) || settings.clubName;
-  const ogTitle = pick(settings.seo.ogTitle, locale) || title;
-  const ogDescription =
-    pick(settings.seo.ogDescription, locale) || description;
-  const ogImage = settings.ogImageUrl || "/brand/og-image.jpg";
+  const seo = resolveSeo(settings, locale);
 
   const languages = Object.fromEntries(
     routing.locales.map((l) => [l, `/${l}`]),
   );
+  const altLocales = routing.locales
+    .filter((l) => l !== locale)
+    .map(ogLocale);
 
   return {
     metadataBase: new URL(SITE_URL),
-    title,
-    description,
+    title: seo.title,
+    description: seo.description,
+    applicationName: seo.clubName,
     alternates: {
       canonical: `/${locale}`,
       languages: { ...languages, "x-default": `/${routing.defaultLocale}` },
     },
     openGraph: {
       type: "website",
-      siteName: settings.clubName,
-      title: ogTitle,
-      description: ogDescription,
+      siteName: seo.clubName,
+      title: seo.ogTitle,
+      description: seo.ogDescription,
       url: `/${locale}`,
-      locale: locale === "ru" ? "ru_RU" : locale === "ro" ? "ro_RO" : "en_US",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: settings.clubName }],
+      locale: ogLocale(locale),
+      alternateLocale: altLocales,
+      images: [
+        { url: seo.ogImage, width: 1200, height: 630, alt: seo.clubName },
+      ],
     },
     twitter: {
       card: "summary_large_image",
-      title: ogTitle,
-      description: ogDescription,
-      images: [ogImage],
+      title: seo.ogTitle,
+      description: seo.ogDescription,
+      images: [seo.ogImage],
     },
   };
 }

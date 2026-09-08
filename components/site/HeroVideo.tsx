@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /**
@@ -60,9 +61,14 @@ export function HeroVideo({
 
   return (
     <div className="absolute inset-0 -z-10">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${poster})` }}
+      {/* poster as a real optimised image so it can be the LCP element */}
+      <Image
+        src={poster}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover [filter:brightness(0.55)]"
       />
       {src && (
         <video

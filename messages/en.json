@@ -25,7 +25,6 @@
   "programs": {
     "kicker": "CANGUR · CHIȘINĂU",
     "title": "CHOOSE YOUR TRAINING",
-    "srSuffix": " — boxing club in Chișinău, Botanica district",
     "items": {
       "men": {
         "title": "Men's boxing",
@@ -43,7 +42,8 @@
         "title": "Personal training",
         "text": "Individual plan and one-to-one coaching."
       }
-    }
+    },
+    "intro": "Cangur is a boxing club in Chișinău, Botanica district. Group and personal boxing training for adults, women and kids."
   },
   "gallery": {
     "kicker": "INSIDE THE CLUB",
@@ -103,7 +103,8 @@
     "routeCta": "Open directions"
   },
   "footer": {
-    "rights": "© {year} Cangur Boxing Club & Gym"
+    "rights": "© {year} Cangur Boxing Club & Gym",
+    "about": "Cangur boxing club in Chișinău, Botanica district. Group and personal boxing training for adults, women and kids."
   },
   "a11y": {
     "skipToContent": "Skip to content",
