@@ -8,11 +8,13 @@ export async function SingletonForm({
   title,
   fields,
   description,
+  from,
 }: {
   table: "settings" | "hero";
   title: string;
   fields: FieldSpec[];
   description?: string;
+  from?: string | null;
 }) {
   const values = await getSingleton(table);
   const action = saveSingletonEntity.bind(null, table, fields) as (
@@ -22,13 +24,18 @@ export async function SingletonForm({
 
   return (
     <div className="flex flex-col gap-5">
-      <div>
+      <div className="flex flex-wrap items-center gap-3">
         <h1 className="text-xl font-black">{title}</h1>
-        {description ? (
-          <p className="mt-1 text-[13px] text-[var(--a-muted)]">{description}</p>
+        {from ? (
+          <a href={from} className="admin-btn">
+            ← Вернуться на сайт
+          </a>
         ) : null}
       </div>
-      <EntityForm action={action} fields={fields} values={values} />
+      {description ? (
+        <p className="-mt-2 text-[13px] text-[var(--a-muted)]">{description}</p>
+      ) : null}
+      <EntityForm action={action} fields={fields} values={values} from={from} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -21,7 +22,7 @@ function LoginForm() {
 
   if (!isSupabaseConfigured) {
     return (
-      <p className="text-[var(--a-muted)]">
+      <p className="text-sm text-[var(--a-muted)]">
         База данных ещё не подключена. Добавьте переменные Supabase в{" "}
         <code>.env.local</code> и перезапустите сервер.
       </p>
@@ -62,11 +63,11 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={signIn} className="flex flex-col gap-3">
-      <label className="text-[13px] text-[var(--a-muted)]">
-        Email
+    <form onSubmit={signIn} className="flex flex-col gap-4">
+      <label className="flex flex-col gap-1.5">
+        <span className="text-[13px] font-bold text-[var(--a-muted)]">Email</span>
         <input
-          className="admin-input mt-1"
+          className="admin-input"
           type="email"
           autoComplete="username"
           value={email}
@@ -74,10 +75,10 @@ function LoginForm() {
           required
         />
       </label>
-      <label className="text-[13px] text-[var(--a-muted)]">
-        Пароль
+      <label className="flex flex-col gap-1.5">
+        <span className="text-[13px] font-bold text-[var(--a-muted)]">Пароль</span>
         <input
-          className="admin-input mt-1"
+          className="admin-input"
           type="password"
           autoComplete="current-password"
           value={password}
@@ -86,12 +87,12 @@ function LoginForm() {
         />
       </label>
       {msg ? <p className="text-[13px] text-[#ff6b81]">{msg}</p> : null}
-      <button className="admin-btn admin-btn--primary" disabled={busy}>
+      <button className="admin-btn admin-btn--primary mt-1 justify-center py-3" disabled={busy}>
         {busy ? "…" : "Войти"}
       </button>
       <button
         type="button"
-        className="text-left text-[13px] text-[var(--a-muted)] hover:text-white"
+        className="self-start text-[13px] text-[var(--a-muted)] hover:text-white"
         onClick={forgot}
       >
         Забыли пароль?
@@ -102,14 +103,31 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="mx-auto flex min-h-dvh max-w-[380px] flex-col justify-center px-5">
-      <h1 className="mb-1 text-2xl font-black">CANGUR / admin</h1>
-      <p className="mb-6 text-[13px] text-[var(--a-muted)]">
-        Панель управления сайтом клуба.
-      </p>
-      <Suspense fallback={null}>
-        <LoginForm />
-      </Suspense>
+    <div className="flex min-h-dvh flex-col items-center justify-center px-5">
+      <div className="w-full max-w-[360px]">
+        <div className="mb-8 flex items-center gap-3">
+          <Image
+            src="/brand/logo.webp"
+            alt="Cangur"
+            width={52}
+            height={52}
+            priority
+            className="h-12 w-12"
+          />
+          <div className="leading-tight">
+            <p
+              className="text-xl font-black tracking-[0.06em]"
+              style={{ fontFamily: "var(--font-onest), sans-serif" }}
+            >
+              CANGUR
+            </p>
+            <p className="text-[12px] text-[var(--a-muted)]">Управление сайтом</p>
+          </div>
+        </div>
+        <Suspense fallback={null}>
+          <LoginForm />
+        </Suspense>
+      </div>
     </div>
   );
 }

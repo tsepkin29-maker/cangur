@@ -21,12 +21,14 @@ export function ResourceTable({
   rows,
   addLabel = "Добавить",
   reorderable = true,
+  linkQuery = "",
 }: {
   table: EditableTable;
   basePath: string;
   rows: RowView[];
   addLabel?: string;
   reorderable?: boolean;
+  linkQuery?: string;
 }) {
   const router = useRouter();
   const [items, setItems] = useState(rows);
@@ -64,7 +66,7 @@ export function ResourceTable({
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <Link href={`${basePath}/new`} className="admin-btn admin-btn--primary">
+        <Link href={`${basePath}/new${linkQuery}`} className="admin-btn admin-btn--primary">
           + {addLabel}
         </Link>
         {pending ? (
@@ -130,7 +132,7 @@ export function ResourceTable({
               вкл
             </label>
 
-            <Link href={`${basePath}/${r.id}`} className="admin-btn">
+            <Link href={`${basePath}/${r.id}${linkQuery}`} className="admin-btn">
               Изменить
             </Link>
             <button

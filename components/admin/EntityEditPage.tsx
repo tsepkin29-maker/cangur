@@ -7,14 +7,15 @@ import { EntityForm } from "./EntityForm";
 export async function EntityEditPage({
   spec,
   id,
+  from,
 }: {
   spec: EntitySpec;
   id: string;
+  from?: string | null;
 }) {
   const isNew = id === "new";
   const values = isNew ? {} : ((await getRow(spec.table, id)) ?? {});
 
-  // Fill runtime select options (coach picker on the schedule form).
   let fields = spec.fields;
   if (spec.table === "schedule_slots") {
     const coachOptions = await listCoachOptions();
@@ -23,24 +24,37 @@ export async function EntityEditPage({
     );
   }
 
-  const action = saveEntity.bind(
-    null,
-    spec.table,
-    fields,
-    spec.listPath,
-  ) as (prev: FormState, fd: FormData) => Promise<FormState>;
+  const action = saveEntity.bind(null, spec.table, fields) as (
+    prev: FormState,
+    fd: FormData,
+  ) => Promise<FormState>;
+
+  const backHref =
+    spec.listPath + (from ? `?from=${encodeURIComponent(from)}` : "");
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex items-center gap-3">
-        <Link href={spec.listPath} className="admin-btn">
+      <div className="flex flex-wrap items-center gap-3">
+        <Link href={backHref} className="admin-btn">
           ← Назад
         </Link>
+        {from ? (
+          <a href={from} className="admin-btn">
+            ← Вернуться на сайт
+          </a>
+        ) : null}
         <h1 className="text-xl font-black">
           {isNew ? `Новый: ${spec.title}` : `Редактирование: ${spec.title}`}
         </h1>
       </div>
-      <EntityForm action={action} fields={fields} values={values} isNew={isNew} />
+      <EntityForm
+        action={action}
+        fields={fields}
+        values={values}
+        isNew={isNew}
+        from={from}
+        listPath={spec.listPath}
+      />
     </div>
   );
 }

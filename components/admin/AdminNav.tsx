@@ -83,18 +83,6 @@ export function AdminNav({ email }: { email: string | null }) {
         <div className="mt-6 border-t border-[var(--a-line)] pt-3">
           <p className="px-3 pb-1 text-[11px] text-[var(--a-muted)]">{email}</p>
           {link("/admin/account", "Пароль")}
-          <form action="/admin/logout" method="post">
-            <button type="submit" className="admin-btn admin-btn--danger mx-3 mt-2">
-              Выйти
-            </button>
-          </form>
-          <Link
-            href="/ru"
-            target="_blank"
-            className="mx-3 mt-2 block text-[13px] text-[var(--a-muted)] hover:text-white"
-          >
-            Открыть сайт ↗
-          </Link>
         </div>
       </nav>
     </aside>

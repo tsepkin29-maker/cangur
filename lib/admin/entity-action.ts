@@ -1,39 +1,41 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import type { FieldSpec } from "./entity";
 import { rowFromFormData } from "./entity";
 import type { EditableTable } from "./tables";
-import { saveRow, deleteRow as deleteRowAction } from "./actions";
+import { saveRow, saveSingleton } from "./actions";
 
-export type FormState = { ok: boolean; error?: string; savedAt?: number };
+export type FormState = {
+  ok: boolean;
+  error?: string;
+  savedAt?: number;
+  id?: string;
+};
 
 /**
- * Generic create/update for a content entity. Bound per page with the
- * table, its field specs and where to go after a successful save.
+ * Generic create/update for a content entity. No redirect on success —
+ * the form shows "Сохранено" + [Посмотреть на сайте] / [Продолжить].
+ * Bound per page with the table + field specs.
  */
 export async function saveEntity(
   table: EditableTable,
   fields: FieldSpec[],
-  redirectTo: string,
   _prev: FormState,
   formData: FormData,
 ): Promise<FormState> {
   const row = rowFromFormData(fields, formData);
-  const res = await saveRow(table, row, { redirectTo });
+  const res = await saveRow(table, row);
   if (!res.ok) return { ok: false, error: res.error };
-  revalidatePath(redirectTo);
-  return { ok: true, savedAt: Date.now() };
+  return { ok: true, savedAt: Date.now(), id: res.id };
 }
 
-/** Singleton save (settings/hero) — stays on the same page. */
+/** Singleton save (settings / hero) — stays on the same page. */
 export async function saveSingletonEntity(
   table: "settings" | "hero",
   fields: FieldSpec[],
   _prev: FormState,
   formData: FormData,
 ): Promise<FormState> {
-  const { saveSingleton } = await import("./actions");
   const row = rowFromFormData(fields, formData);
   delete row.id;
   const res = await saveSingleton(table, row);
@@ -44,8 +46,7 @@ export async function saveSingletonEntity(
 export async function removeEntity(
   table: EditableTable,
   id: string,
-  redirectTo: string,
 ): Promise<void> {
-  await deleteRowAction(table, id);
-  revalidatePath(redirectTo);
+  const { deleteRow } = await import("./actions");
+  await deleteRow(table, id);
 }

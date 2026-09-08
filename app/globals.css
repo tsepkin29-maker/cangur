@@ -44,6 +44,18 @@
   }
 }
 
+/* admin edit mode on the public site */
+body[data-admin-mode="1"] {
+  padding-bottom: 56px;
+}
+body[data-admin-mode="1"] [data-mobile-call-bar] {
+  display: none;
+}
+[data-admin-edit] {
+  /* keep edit pills out of the tab order noise but still clickable */
+  font-family: var(--font-sans);
+}
+
 * {
   box-sizing: border-box;
 }

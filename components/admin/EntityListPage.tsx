@@ -10,7 +10,13 @@ function localizedFirst(v: unknown): string {
   return typeof v === "string" ? v : "";
 }
 
-export async function EntityListPage({ spec }: { spec: EntitySpec }) {
+export async function EntityListPage({
+  spec,
+  from,
+}: {
+  spec: EntitySpec;
+  from?: string | null;
+}) {
   const rows = await listRows(
     spec.table,
     spec.orderBy ?? "sort_order",
@@ -22,7 +28,9 @@ export async function EntityListPage({ spec }: { spec: EntitySpec }) {
 
   const views: RowView[] = rows.map((r) => ({
     id: String(r.id),
-    title: localizedFirst(r[titleField]) || String(r.campaign_name ?? r.slug ?? ""),
+    title:
+      localizedFirst(r[titleField]) ||
+      String(r.campaign_name ?? r.slug ?? ""),
     subtitle:
       typeof r.price === "number" || typeof r.price === "string"
         ? `${r.price} ${r.currency ?? ""}`.trim()
@@ -31,15 +39,25 @@ export async function EntityListPage({ spec }: { spec: EntitySpec }) {
     active: r.active !== false,
   }));
 
+  const q = from ? `?from=${encodeURIComponent(from)}` : "";
+
   return (
     <div className="flex flex-col gap-5">
-      <h1 className="text-xl font-black">{spec.title}</h1>
+      <div className="flex flex-wrap items-center gap-3">
+        <h1 className="text-xl font-black">{spec.title}</h1>
+        {from ? (
+          <a href={from} className="admin-btn">
+            ← Вернуться на сайт
+          </a>
+        ) : null}
+      </div>
       <ResourceTable
         table={spec.table}
         basePath={spec.listPath}
         rows={views}
         addLabel={spec.title}
         reorderable={spec.reorderable ?? true}
+        linkQuery={q}
       />
     </div>
   );

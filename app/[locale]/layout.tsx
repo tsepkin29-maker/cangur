@@ -9,6 +9,7 @@ import { SITE_URL } from "@/lib/seo";
 import { pick } from "@/lib/i18n";
 import { getCoaches, getSettings } from "@/lib/content";
 import { AnnouncementBar } from "@/components/site/AnnouncementBar";
+import { AdminAffordances } from "@/components/site/AdminAffordances";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCallBar } from "@/components/site/MobileCallBar";
@@ -120,6 +121,7 @@ export default async function LocaleLayout({
             phoneDisplay={settings.phoneDisplay}
             label={callLabel}
           />
+          <AdminAffordances />
         </NextIntlClientProvider>
       </body>
     </html>

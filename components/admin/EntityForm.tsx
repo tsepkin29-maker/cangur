@@ -5,6 +5,7 @@ import { useFormStatus } from "react-dom";
 import type { FieldSpec } from "@/lib/admin/entity";
 import type { FormState } from "@/lib/admin/entity-action";
 import { ImageInput } from "./ImageInput";
+import { SavedBanner } from "./SavedBanner";
 
 type Values = Record<string, unknown>;
 const LOCALES = [
@@ -19,17 +20,12 @@ function loc(v: unknown, k: string): string {
     : "";
 }
 
-function SubmitBtn({ savedAt }: { savedAt?: number }) {
+function SubmitBtn() {
   const { pending } = useFormStatus();
   return (
-    <div className="flex items-center gap-3">
-      <button className="admin-btn admin-btn--primary" disabled={pending}>
-        {pending ? "Сохранение…" : "Сохранить"}
-      </button>
-      {savedAt ? (
-        <span className="text-[13px] text-[#5ecb7a]">Сохранено ✓</span>
-      ) : null}
-    </div>
+    <button className="admin-btn admin-btn--primary" disabled={pending}>
+      {pending ? "Сохранение…" : "Сохранить"}
+    </button>
   );
 }
 
@@ -38,11 +34,15 @@ export function EntityForm({
   fields,
   values,
   isNew,
+  from,
+  listPath,
 }: {
   action: (prev: FormState, fd: FormData) => Promise<FormState>;
   fields: FieldSpec[];
   values: Values;
   isNew?: boolean;
+  from?: string | null;
+  listPath?: string;
 }) {
   const [state, formAction] = useActionState<FormState, FormData>(action, {
     ok: true,
@@ -181,7 +181,9 @@ export function EntityForm({
         <p className="text-[13px] text-[#ff6b81]">Ошибка: {state.error}</p>
       ) : null}
 
-      <SubmitBtn savedAt={state.savedAt} />
+      <SavedBanner from={from} listPath={listPath} savedAt={state.savedAt} />
+
+      <SubmitBtn />
     </form>
   );
 }

@@ -1,6 +1,11 @@
 import { EntityListPage } from "@/components/admin/EntityListPage";
 import { COACHES_SPEC } from "@/lib/admin/specs";
 
-export default function Page() {
-  return <EntityListPage spec={COACHES_SPEC} />;
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>;
+}) {
+  const { from } = await searchParams;
+  return <EntityListPage spec={COACHES_SPEC} from={from ?? null} />;
 }
