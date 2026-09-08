@@ -74,7 +74,7 @@ export async function Header({ showCoaches = false }: { showCoaches?: boolean })
           ))}
         </nav>
 
-        <LangSwitcher className="hidden sm:flex" />
+        <LangSwitcher className="flex" />
         <HeaderCallLink
           phone={settings.phoneHref}
           label={callLabel}

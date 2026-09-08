@@ -65,7 +65,7 @@ export function MobileNav({
         aria-controls={panelId}
         aria-label={open ? t("closeMenu") : t("openMenu")}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-panel-2"
+        className="relative z-[60] flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-panel-2"
       >
         <span className="relative block h-3.5 w-5" aria-hidden>
           <span
@@ -102,6 +102,14 @@ export function MobileNav({
             aria-label={t("openMenu")}
             className="absolute inset-x-0 top-0 max-h-dvh overflow-y-auto border-b border-line bg-bg px-[var(--site-gutter)] pb-8 pt-[calc(var(--header-h)+8px)]"
           >
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label={t("closeMenu")}
+              className="absolute right-[var(--site-gutter)] top-3 flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-panel-2 text-lg leading-none"
+            >
+              <span aria-hidden>✕</span>
+            </button>
             <nav className="flex flex-col divide-y divide-line">
               {items.map((item) => (
                 <a

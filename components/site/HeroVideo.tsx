@@ -37,6 +37,9 @@ export function HeroVideo({
     let next: { webm: string | null; mp4: string | null } | null = null;
     if (isDesktop && webm) next = { webm, mp4 };
     else if (!isDesktop && mobile) next = { webm: mobile, mp4: null };
+    // No phone-specific clip configured: fall back to the desktop pair so
+    // mobile still gets a moving hero (mp4 source keeps iOS Safari happy).
+    else if (!isDesktop && webm) next = { webm, mp4 };
     if (!next) return;
 
     const id = requestAnimationFrame(() => setSrc(next));
