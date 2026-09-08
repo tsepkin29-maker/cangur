@@ -42,8 +42,10 @@ export function HeroVideo({
     else if (!isDesktop && webm) next = { webm, mp4 };
     if (!next) return;
 
-    const id = requestAnimationFrame(() => setSrc(next));
-    return () => cancelAnimationFrame(id);
+    // Defer past first paint so the poster is the LCP element. A timeout
+    // (not rAF) so it still fires if the tab is loaded in the background.
+    const id = setTimeout(() => setSrc(next), 200);
+    return () => clearTimeout(id);
   }, [webm, mp4, mobile]);
 
   useEffect(() => {
