@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "title": "Cangur Boxing Club & Gym — boxing in Chișinău, Botanica",
+    "description": "Cangur Boxing Club & Gym — men's, women's and kids' boxing, personal training in Chișinău (Botanica). Membership from 1000 MDL.",
+    "ogAlt": "Cangur Boxing Club & Gym"
+  },
+  "nav": {
+    "programs": "Training",
+    "gallery": "Gallery",
+    "prices": "Prices",
+    "shop": "Pro Shop",
+    "schedule": "Schedule",
+    "coaches": "Coaches",
+    "contacts": "Contacts",
+    "call": "Call",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "hero": {
+    "kicker": "CANGUR BOXING CLUB",
+    "title": "READY TO FIGHT?",
+    "subtitle": "JOIN CANGUR TODAY",
+    "cta": "START NOW"
+  },
+  "programs": {
+    "kicker": "CANGUR · CHIȘINĂU",
+    "title": "CHOOSE YOUR TRAINING",
+    "srSuffix": " — boxing club in Chișinău, Botanica district",
+    "items": {
+      "men": { "title": "Men's boxing", "text": "Technique, bags, pads, endurance and sparring." },
+      "women": { "title": "Women's boxing", "text": "Strength, coordination, fitness and confidence." },
+      "kids": { "title": "Kids boxing", "text": "Discipline, reactions and safe technique." },
+      "personal": { "title": "Personal training", "text": "Individual plan and one-to-one coaching." }
+    }
+  },
+  "gallery": {
+    "kicker": "INSIDE THE CLUB",
+    "title": "Gallery",
+    "prev": "Previous photo",
+    "next": "Next photo"
+  },
+  "pricing": {
+    "kicker": "TRAINING PRICES",
+    "title": "Prices",
+    "note": "Call to confirm current membership and personal-training prices.",
+    "popular": "Popular",
+    "perMonth": "per month",
+    "perSession": "per session",
+    "package": "package",
+    "bookCta": "Book a training session"
+  },
+  "schedule": {
+    "kicker": "WHEN TO TRAIN",
+    "title": "Schedule",
+    "workHours": "Opening hours · Monday — Sunday",
+    "hours": "07:00 — 21:00",
+    "byArrangement": "By arrangement",
+    "note": "Personal training and the 2-person mini class are scheduled by arrangement.",
+    "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  },
+  "testimonials": {
+    "kicker": "REVIEWS",
+    "title": "What students say"
+  },
+  "shop": {
+    "kicker": "OFFICIAL EQUIPMENT",
+    "title": "PRO SHOP",
+    "view": "Details",
+    "close": "Close"
+  },
+  "coaches": {
+    "kicker": "THE TEAM",
+    "title": "Coaches"
+  },
+  "contacts": {
+    "kicker": "FIND US",
+    "title": "Contacts",
+    "addressLabel": "Address",
+    "hoursLabel": "Opening hours",
+    "phoneLabel": "Phone",
+    "instagramLabel": "Instagram",
+    "routeCta": "Open directions"
+  },
+  "footer": {
+    "rights": "© {year} Cangur Boxing Club & Gym"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "scrollProgress": "Page scroll progress"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "title": "Cangur Boxing Club & Gym — box în Chișinău, Botanica",
+    "description": "Cangur Boxing Club & Gym — box pentru bărbați, femei și copii, antrenamente individuale în Chișinău (Botanica). Abonament de la 1000 MDL.",
+    "ogAlt": "Cangur Boxing Club & Gym"
+  },
+  "nav": {
+    "programs": "Antrenamente",
+    "gallery": "Galerie",
+    "prices": "Prețuri",
+    "shop": "Pro Shop",
+    "schedule": "Orar",
+    "coaches": "Antrenori",
+    "contacts": "Contacte",
+    "call": "Sună",
+    "openMenu": "Deschide meniul",
+    "closeMenu": "Închide meniul"
+  },
+  "hero": {
+    "kicker": "CANGUR BOXING CLUB",
+    "title": "GATA DE LUPTĂ?",
+    "subtitle": "ALĂTURĂ-TE CANGUR ASTĂZI",
+    "cta": "ÎNCEPE ACUM"
+  },
+  "programs": {
+    "kicker": "CANGUR · CHIȘINĂU",
+    "title": "ALEGE ANTRENAMENTUL",
+    "srSuffix": " — club de box în Chișinău, sectorul Botanica",
+    "items": {
+      "men": { "title": "Box pentru bărbați", "text": "Tehnică, sac, palmare, rezistență și sparring." },
+      "women": { "title": "Box feminin", "text": "Forță, coordonare, formă și încredere." },
+      "kids": { "title": "Box pentru copii", "text": "Disciplină, reacție și tehnică sigură." },
+      "personal": { "title": "Individual", "text": "Plan individual și lucru unu la unu." }
+    }
+  },
+  "gallery": {
+    "kicker": "ÎN INTERIORUL CLUBULUI",
+    "title": "Galerie",
+    "prev": "Fotografia anterioară",
+    "next": "Fotografia următoare"
+  },
+  "pricing": {
+    "kicker": "PREȚURI ANTRENAMENTE",
+    "title": "Prețuri",
+    "note": "Prețul exact al abonamentelor și antrenamentelor individuale poate fi aflat telefonic.",
+    "popular": "Popular",
+    "perMonth": "pe lună",
+    "perSession": "per ședință",
+    "package": "pachet",
+    "bookCta": "Înscrie-te la antrenament"
+  },
+  "schedule": {
+    "kicker": "CÂND TE ANTRENEZI",
+    "title": "Orar",
+    "workHours": "Program · Luni — Duminică",
+    "hours": "07:00 — 21:00",
+    "byArrangement": "La înțelegere",
+    "note": "Antrenamentele individuale și mini-clasa pentru 2 persoane — ora se stabilește de comun acord.",
+    "weekdays": ["Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă", "Duminică"]
+  },
+  "testimonials": {
+    "kicker": "RECENZII",
+    "title": "Ce spun elevii"
+  },
+  "shop": {
+    "kicker": "OFFICIAL EQUIPMENT",
+    "title": "PRO SHOP",
+    "view": "Detalii",
+    "close": "Închide"
+  },
+  "coaches": {
+    "kicker": "ECHIPA",
+    "title": "Antrenori"
+  },
+  "contacts": {
+    "kicker": "CUM NE GĂSEȘTI",
+    "title": "Contacte",
+    "addressLabel": "Adresă",
+    "hoursLabel": "Program",
+    "phoneLabel": "Telefon",
+    "instagramLabel": "Instagram",
+    "routeCta": "Deschide traseul"
+  },
+  "footer": {
+    "rights": "© {year} Cangur Boxing Club & Gym"
+  },
+  "a11y": {
+    "skipToContent": "Sari la conținut",
+    "scrollProgress": "Progresul derulării paginii"
+  }
+}

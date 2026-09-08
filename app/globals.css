@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Cangur design tokens — extracted 1:1 from the legacy static site
+ * (see legacy/original-index.html). Dark identity + red accent.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-bg: #090909;
+  --color-panel: #141414;
+  --color-panel-2: #1a1a1a;
+  --color-ink: #ffffff;
+  --color-muted: #9f9f9f;
+  --color-faint: #8a8a8a; /* legacy #777, nudged up for AA on micro text */
+  --color-red: #ed1b3f;
+  --color-red-soft: #ff7890;
+  --color-line: rgba(255, 255, 255, 0.1);
+
+  --font-display: var(--font-onest), "Onest", "Arial Black", system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+
+  --radius-card: 20px;
+
+  --shadow-glow: 0 0 18px rgba(237, 27, 63, 0.26);
+  --shadow-glow-strong: 0 0 14px rgba(237, 27, 63, 0.58), 0 0 34px rgba(237, 27, 63, 0.2);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+  --site-max: 1180px;
+  --site-gutter: 24px;
+  --header-h: 68px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --site-gutter: 18px;
+    --header-h: 60px;
+  }
+  /* room for the fixed mobile call bar */
+  body {
+    padding-bottom: calc(66px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* offset in-page anchor jumps for the sticky header */
+  scroll-padding-top: calc(var(--header-h) + 12px);
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  /* clip (not hidden) prevents accidental horizontal scroll without
+     creating a scroll container that would break position: sticky */
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(237, 27, 63, 0.35);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-red-soft);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Signature Cangur red glow behind the whole page */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(237, 27, 63, 0.1), transparent 22%),
+    radial-gradient(circle at 82% 46%, rgba(237, 27, 63, 0.08), transparent 20%),
+    linear-gradient(
+      115deg,
+      transparent 0 46%,
+      rgba(237, 27, 63, 0.035) 47%,
+      transparent 48% 100%
+    );
+}
+
+@layer components {
+  /* One content width for header, hero and every section */
+  .container-site {
+    width: min(var(--site-max), 100% - var(--site-gutter) * 2);
+    margin-inline: auto;
+  }
+
+  /* Thin red gradient underline used on cards / media (legacy signature) */
+  .edge-glow {
+    position: relative;
+    isolation: isolate;
+  }
+  .edge-glow::after {
+    content: "";
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 0;
+    height: 3px;
+    z-index: 3;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-red),
+      transparent
+    );
+    box-shadow:
+      0 0 16px rgba(237, 27, 63, 0.8),
+      0 0 30px rgba(237, 27, 63, 0.26);
+    opacity: 0.38;
+    transition: opacity 0.2s var(--ease-out-soft);
+  }
+  .edge-glow:hover::after,
+  .edge-glow:focus-within::after {
+    opacity: 1;
+  }
+
+  .hover-lift {
+    transition:
+      transform 0.22s var(--ease-out-soft),
+      border-color 0.22s var(--ease-out-soft),
+      box-shadow 0.22s var(--ease-out-soft);
+  }
+  @media (hover: hover) {
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      border-color: rgba(237, 27, 63, 0.5);
+      box-shadow:
+        0 16px 38px rgba(0, 0, 0, 0.5),
+        0 0 34px rgba(237, 27, 63, 0.15);
+    }
+  }
+
+  /* Horizontal scrollers keep a subtle, discoverable affordance */
+  .snap-x {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--site-gutter);
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .snap-x > * {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+/* Headline glow pulse — decorative, disabled for reduced motion */
+@keyframes cangur-headline-pulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 8px rgba(237, 27, 63, 0.08),
+      0 0 20px rgba(237, 27, 63, 0.06);
+  }
+  50% {
+    text-shadow:
+      0 0 12px rgba(237, 27, 63, 0.32),
+      0 0 30px rgba(237, 27, 63, 0.22),
+      0 0 52px rgba(237, 27, 63, 0.1);
+  }
+}
+
+.headline-pulse {
+  animation: cangur-headline-pulse 3.4s ease-in-out infinite;
+  will-change: text-shadow;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .headline-pulse {
+    animation: none;
+    text-shadow: 0 0 18px rgba(237, 27, 63, 0.14);
+  }
+}

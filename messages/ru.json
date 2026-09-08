@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "title": "Cangur Boxing Club & Gym — бокс в Кишинёве, Ботаника",
+    "description": "Cangur Boxing Club & Gym — мужской, женский и детский бокс, персональные тренировки в Кишинёве (Ботаника). Абонемент от 1000 MDL.",
+    "ogAlt": "Cangur Boxing Club & Gym"
+  },
+  "nav": {
+    "programs": "Занятия",
+    "gallery": "Галерея",
+    "prices": "Цены",
+    "shop": "Pro Shop",
+    "schedule": "Расписание",
+    "coaches": "Тренеры",
+    "contacts": "Контакты",
+    "call": "Позвонить",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню"
+  },
+  "hero": {
+    "kicker": "CANGUR BOXING CLUB",
+    "title": "READY TO FIGHT?",
+    "subtitle": "JOIN CANGUR TODAY",
+    "cta": "START NOW"
+  },
+  "programs": {
+    "kicker": "CANGUR · CHIȘINĂU",
+    "title": "ВЫБЕРИ ТРЕНИРОВКУ",
+    "srSuffix": " — боксёрский клуб в Кишинёве, район Ботаника",
+    "items": {
+      "men": { "title": "Мужской бокс", "text": "Техника, мешки, лапы, выносливость и спарринги." },
+      "women": { "title": "Женский бокс", "text": "Сила, координация, форма и уверенность." },
+      "kids": { "title": "Детский бокс", "text": "Дисциплина, реакция и безопасная техника." },
+      "personal": { "title": "Персонально", "text": "Индивидуальный план и работа один на один." }
+    }
+  },
+  "gallery": {
+    "kicker": "ВНУТРИ КЛУБА",
+    "title": "Галерея",
+    "prev": "Предыдущее фото",
+    "next": "Следующее фото"
+  },
+  "pricing": {
+    "kicker": "СТОИМОСТЬ ТРЕНИРОВОК",
+    "title": "Цены",
+    "note": "Точную стоимость абонементов и персональных занятий уточняйте по телефону.",
+    "popular": "Популярно",
+    "perMonth": "в месяц",
+    "perSession": "за занятие",
+    "package": "пакет",
+    "bookCta": "Записаться на тренировку"
+  },
+  "schedule": {
+    "kicker": "КОГДА ТРЕНИРОВАТЬСЯ",
+    "title": "Расписание",
+    "workHours": "График работы · Понедельник — Воскресенье",
+    "hours": "07:00 — 21:00",
+    "byArrangement": "По договорённости",
+    "note": "Персональные тренировки и мини-класс на 2 человека — время по договорённости.",
+    "weekdays": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+  },
+  "testimonials": {
+    "kicker": "ОТЗЫВЫ",
+    "title": "Что говорят ученики"
+  },
+  "shop": {
+    "kicker": "OFFICIAL EQUIPMENT",
+    "title": "PRO SHOP",
+    "view": "Подробнее",
+    "close": "Закрыть"
+  },
+  "coaches": {
+    "kicker": "КОМАНДА",
+    "title": "Тренеры"
+  },
+  "contacts": {
+    "kicker": "КАК НАС НАЙТИ",
+    "title": "Контакты",
+    "addressLabel": "Адрес",
+    "hoursLabel": "График работы",
+    "phoneLabel": "Телефон",
+    "instagramLabel": "Instagram",
+    "routeCta": "Открыть маршрут"
+  },
+  "footer": {
+    "rights": "© {year} Cangur Boxing Club & Gym"
+  },
+  "a11y": {
+    "skipToContent": "Перейти к содержимому",
+    "scrollProgress": "Прогресс прокрутки страницы"
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "generated": "2026-09-08T16:20:01.002Z",
+  "galleryAlts": [
+    {
+      "name": "gallery-1",
+      "alt": "Ринг и груши в зале Cangur Boxing Club с неоновой подсветкой"
+    },
+    {
+      "name": "gallery-2",
+      "alt": "Зона отдыха и витрина с экипировкой в Cangur Boxing Club"
+    },
+    {
+      "name": "gallery-3",
+      "alt": "Боксёрский ринг с грушами под неоновой рамкой в клубе Cangur"
+    },
+    {
+      "name": "gallery-4",
+      "alt": "Силовая зона со штангой и гантелями рядом с рингом"
+    },
+    {
+      "name": "gallery-5",
+      "alt": "Функциональная зона тренировок с кардиотренажёрами и инвентарём"
+    },
+    {
+      "name": "gallery-6",
+      "alt": "Угол ринга с канатами в зале Cangur Boxing Club"
+    },
+    {
+      "name": "gallery-7",
+      "alt": "Зеркальный зал с отражением ринга и тренажёров"
+    }
+  ],
+  "assets": [
+    {
+      "role": "icon",
+      "file": "public/brand/favicon-.png",
+      "bytes": 2114,
+      "mime": "image/png"
+    },
+    {
+      "role": "icon",
+      "file": "public/brand/favicon-.png",
+      "bytes": 3999,
+      "mime": "image/png"
+    },
+    {
+      "role": "apple-touch-icon",
+      "file": "public/brand/apple-touch-icon.png",
+      "bytes": 34076,
+      "mime": "image/png"
+    },
+    {
+      "tag": "img",
+      "alt": "Cangur",
+      "width": "260",
+      "height": "260",
+      "file": "public/brand/logo.webp",
+      "bytes": 8192,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "Мужской бокс",
+      "width": "1100",
+      "height": "1467",
+      "file": "public/images/program-men.webp",
+      "bytes": 64104,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "Женский бокс",
+      "width": "1100",
+      "height": "825",
+      "file": "public/images/program-women.webp",
+      "bytes": 52172,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "Детский бокс",
+      "width": "1100",
+      "height": "825",
+      "file": "public/images/program-kids.webp",
+      "bytes": 60044,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "Персональные тренировки",
+      "width": "864",
+      "height": "1536",
+      "file": "public/images/program-personal.webp",
+      "bytes": 47074,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "Ринг и груши в зале Cangur Boxing Club с неоновой подсветкой",
+      "width": "1200",
+      "height": "905",
+      "file": "public/gallery/gallery-1.webp",
+      "bytes": 88012,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "Зона отдыха и витрина с экипировкой в Cangur Boxing Club",
+      "width": "1200",
+      "height": "905",
+      "file": "public/gallery/gallery-2.webp",
+      "bytes": 72338,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "Боксёрский ринг с грушами под неоновой рамкой в клубе Cangur",
+      "width": "1200",
+      "height": "905",
+      "file": "public/gallery/gallery-3.webp",
+      "bytes": 91000,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "Силовая зона со штангой и гантелями рядом с рингом",
+      "width": "1200",
+      "height": "905",
+      "file": "public/gallery/gallery-4.webp",
+      "bytes": 82342,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "Функциональная зона тренировок с кардиотренажёрами и инвентарём",
+      "width": "1200",
+      "height": "905",
+      "file": "public/gallery/gallery-5.webp",
+      "bytes": 82324,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "Угол ринга с канатами в зале Cangur Boxing Club",
+      "width": "1200",
+      "height": "905",
+      "file": "public/gallery/gallery-6.webp",
+      "bytes": 83192,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "Зеркальный зал с отражением ринга и тренажёров",
+      "width": "1200",
+      "height": "905",
+      "file": "public/gallery/gallery-7.webp",
+      "bytes": 86324,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "12th Round Black",
+      "width": "900",
+      "height": "900",
+      "file": "public/shop/glove-black.webp",
+      "bytes": 29362,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "12th Round Pink",
+      "width": "900",
+      "height": "900",
+      "file": "public/shop/glove-pink.webp",
+      "bytes": 33764,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "img",
+      "alt": "12th Round White",
+      "width": "900",
+      "height": "900",
+      "file": "public/shop/glove-white.webp",
+      "bytes": 52722,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "products[]",
+      "key": "black",
+      "title": "12th Round Black",
+      "file": "public/shop/glove-black-modal.webp",
+      "bytes": 29362,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "products[]",
+      "key": "pink",
+      "title": "12th Round Pink",
+      "file": "public/shop/glove-pink-modal.webp",
+      "bytes": 33764,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "products[]",
+      "key": "white",
+      "title": "12th Round White",
+      "file": "public/shop/glove-white-modal.webp",
+      "bytes": 52722,
+      "mime": "image/webp"
+    },
+    {
+      "tag": "video-copy",
+      "from": "legacy/hero-bg.mp4",
+      "to": "public/video/hero.mp4",
+      "bytes": 3172257
+    },
+    {
+      "tag": "video-copy",
+      "from": "legacy/hero-bg.webm",
+      "to": "public/video/hero.webm",
+      "bytes": 2623253
+    },
+    {
+      "tag": "video-copy",
+      "from": "legacy/hero-poster.jpg",
+      "to": "public/video/hero-poster.jpg",
+      "bytes": 31194
+    },
+    {
+      "tag": "og-copy",
+      "to": "public/brand/og-image.jpg",
+      "bytes": 147375
+    }
+  ]
+}

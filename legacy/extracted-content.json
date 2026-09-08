@@ -1,0 +1,507 @@
+{
+  "meta": {
+    "title": "Cangur Boxing Club & Gym — бокс в Кишинёве, Ботаника",
+    "description": "Cangur Boxing Club & Gym — мужской, женский и детский бокс, персональные тренировки в Кишинёве (Ботаника). Абонемент от 1000 MDL.",
+    "canonical": "https://cangur.md/",
+    "ogImage": "https://cangur.md/og-image.jpg",
+    "phone": "+37368702717",
+    "instagram": "https://www.instagram.com/cangur_boxingclub/",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Gradina+Botanica+2+Chisinau",
+    "address": "Chișinău · Botanica · Grădina Botanică 2",
+    "workHours": "07:00 — 21:00"
+  },
+  "i18n": {
+    "ru": {
+      "classes": "Занятия",
+      "schedule": "Расписание",
+      "gallery": "Галерея",
+      "contacts": "Контакты",
+      "call": "Позвонить",
+      "choose": "ВЫБЕРИ ТРЕНИРОВКУ",
+      "intro": "Главный экран сразу показывает все четыре направления. Нажми на карточку, чтобы увидеть описание.",
+      "men": "Мужской бокс",
+      "menText": "Техника, мешки, лапы, выносливость и спарринги.",
+      "women": "Женский бокс",
+      "womenText": "Сила, координация, форма и уверенность.",
+      "kids": "Детский бокс",
+      "kidsText": "Дисциплина, реакция и безопасная техника.",
+      "personal": "Персонально",
+      "personalText": "Индивидуальный план и работа один на один.",
+      "details": "Подробнее",
+      "when": "КОГДА ТРЕНИРОВАТЬСЯ",
+      "mon": "Понедельник",
+      "tue": "Вторник",
+      "wed": "Среда",
+      "thu": "Четверг",
+      "fri": "Пятница",
+      "sat": "Суббота",
+      "inside": "ВНУТРИ КЛУБА",
+      "results": "Результаты",
+      "reviewsLabel": "ОТЗЫВЫ",
+      "reviews": "Что говорят ученики",
+      "r1": "«Пришёл без опыта. Через несколько недель уже почувствовал технику и уверенность.»",
+      "r2": "«Ребёнок ходит с удовольствием. Хорошая атмосфера и внимательный тренер.»",
+      "r3": "«Персональные тренировки дают очень быстрый прогресс.»",
+      "find": "КАК НАС НАЙТИ",
+      "route": "Открыть маршрут",
+      "pricesLabel": "СТОИМОСТЬ ТРЕНИРОВОК",
+      "pricesTitle": "Цены",
+      "pricesIntro": "Точную стоимость абонементов и персональных занятий уточняйте по телефону.",
+      "priceRequest": "Уточнить",
+      "groupTraining": "Групповые тренировки",
+      "individualTraining": "Индивидуальная тренировка",
+      "priceCall": "Уточнить стоимость",
+      "popular": "Популярно",
+      "perMonth": "в месяц",
+      "perSession": "за занятие",
+      "bookTraining": "Записаться на тренировку",
+      "ready": "READY TO FIGHT?",
+      "joinToday": "JOIN CANGUR TODAY",
+      "startNow": "START NOW",
+      "groupBoxing": "Групповой бокс",
+      "singleGroup": "Разовая групповая",
+      "personalPack": "10 персональных",
+      "miniClass": "Мини-класс · 2 человека",
+      "miniGroup": "Мини-группа · 3+",
+      "womenMini": "Мини-группа для девушек",
+      "kids59": "Дети 5–9 лет",
+      "kids1016": "Дети 10–16 лет",
+      "package": "пакет",
+      "workHours": "График работы · Понедельник — Воскресенье",
+      "sun": "Воскресенье",
+      "byAgreement": "По договорённости",
+      "personalTime": "Персональные тренировки и мини-класс на 2 человека — время по договорённости."
+    },
+    "ro": {
+      "classes": "Antrenamente",
+      "schedule": "Orar",
+      "gallery": "Galerie",
+      "contacts": "Contacte",
+      "call": "Sună",
+      "choose": "ALEGE ANTRENAMENTUL",
+      "intro": "Primul ecran arată imediat toate cele patru direcții. Apasă pe card pentru detalii.",
+      "men": "Box pentru bărbați",
+      "menText": "Tehnică, sac, palmare, rezistență și sparring.",
+      "women": "Box feminin",
+      "womenText": "Forță, coordonare, formă și încredere.",
+      "kids": "Box pentru copii",
+      "kidsText": "Disciplină, reacție și tehnică sigură.",
+      "personal": "Individual",
+      "personalText": "Plan individual și lucru unu la unu.",
+      "details": "Detalii",
+      "when": "CÂND TE ANTRENEZI",
+      "mon": "Luni",
+      "tue": "Marți",
+      "wed": "Miercuri",
+      "thu": "Joi",
+      "fri": "Vineri",
+      "sat": "Sâmbătă",
+      "inside": "ÎN INTERIORUL CLUBULUI",
+      "results": "Rezultate",
+      "reviewsLabel": "RECENZII",
+      "reviews": "Ce spun elevii",
+      "r1": "«Am venit fără experiență. După câteva săptămâni am simțit deja progresul.»",
+      "r2": "«Copilul vine cu plăcere. Atmosferă bună și antrenor atent.»",
+      "r3": "«Antrenamentele individuale oferă progres rapid.»",
+      "find": "CUM NE GĂSEȘTI",
+      "route": "Deschide traseul",
+      "pricesLabel": "PREȚURI ANTRENAMENTE",
+      "pricesTitle": "Prețuri",
+      "pricesIntro": "Prețul exact al abonamentelor și antrenamentelor individuale poate fi aflat telefonic.",
+      "priceRequest": "Află prețul",
+      "groupTraining": "Antrenamente de grup",
+      "individualTraining": "Antrenament individual",
+      "priceCall": "Află prețul",
+      "popular": "Popular",
+      "perMonth": "pe lună",
+      "perSession": "per ședință",
+      "bookTraining": "Înscrie-te la antrenament",
+      "ready": "GATA DE LUPTĂ?",
+      "joinToday": "ALĂTURĂ-TE CANGUR ASTĂZI",
+      "startNow": "ÎNCEPE ACUM",
+      "groupBoxing": "Box de grup",
+      "singleGroup": "Antrenament de grup · o ședință",
+      "personalPack": "10 antrenamente individuale",
+      "miniClass": "Mini-clasă · 2 persoane",
+      "miniGroup": "Mini-grup · 3+",
+      "womenMini": "Mini-grup pentru femei",
+      "kids59": "Copii 5–9 ani",
+      "kids1016": "Copii 10–16 ani",
+      "package": "pachet",
+      "workHours": "Program · Luni — Duminică",
+      "sun": "Duminică",
+      "byAgreement": "La înțelegere",
+      "personalTime": "Antrenamentele individuale și mini-clasa pentru 2 persoane — ora se stabilește de comun acord."
+    },
+    "en": {
+      "classes": "Training",
+      "schedule": "Schedule",
+      "gallery": "Gallery",
+      "contacts": "Contacts",
+      "call": "Call",
+      "choose": "CHOOSE YOUR TRAINING",
+      "intro": "The first screen immediately shows all four programs. Tap a card for details.",
+      "men": "Men’s boxing",
+      "menText": "Technique, bags, pads, endurance and sparring.",
+      "women": "Women’s boxing",
+      "womenText": "Strength, coordination, fitness and confidence.",
+      "kids": "Kids boxing",
+      "kidsText": "Discipline, reactions and safe technique.",
+      "personal": "Personal training",
+      "personalText": "Individual plan and one-to-one coaching.",
+      "details": "Details",
+      "when": "WHEN TO TRAIN",
+      "mon": "Monday",
+      "tue": "Tuesday",
+      "wed": "Wednesday",
+      "thu": "Thursday",
+      "fri": "Friday",
+      "sat": "Saturday",
+      "inside": "INSIDE THE CLUB",
+      "results": "Results",
+      "reviewsLabel": "REVIEWS",
+      "reviews": "What students say",
+      "r1": "“I came with no experience. After a few weeks I already felt real progress.”",
+      "r2": "“My child enjoys every session. Great atmosphere and an attentive coach.”",
+      "r3": "“Personal training gives very fast progress.”",
+      "find": "FIND US",
+      "route": "Open directions",
+      "pricesLabel": "TRAINING PRICES",
+      "pricesTitle": "Prices",
+      "pricesIntro": "Call to confirm current membership and personal-training prices.",
+      "priceRequest": "Ask price",
+      "groupTraining": "Group training",
+      "individualTraining": "Personal training",
+      "priceCall": "Ask for current price",
+      "popular": "Popular",
+      "perMonth": "per month",
+      "perSession": "per session",
+      "bookTraining": "Book a training session",
+      "ready": "READY TO FIGHT?",
+      "joinToday": "JOIN CANGUR TODAY",
+      "startNow": "START NOW",
+      "groupBoxing": "Group boxing",
+      "singleGroup": "Single group session",
+      "personalPack": "10 personal sessions",
+      "miniClass": "Mini class · 2 people",
+      "miniGroup": "Mini group · 3+",
+      "womenMini": "Women’s mini group",
+      "kids59": "Kids 5–9",
+      "kids1016": "Kids 10–16",
+      "package": "package",
+      "workHours": "Opening hours · Monday — Sunday",
+      "sun": "Sunday",
+      "byAgreement": "By arrangement",
+      "personalTime": "Personal training and the 2-person mini class are scheduled by arrangement."
+    }
+  },
+  "programs": [
+    {
+      "type": "men",
+      "alt": "Мужской бокс",
+      "titleKey": "men",
+      "title": "Мужской бокс",
+      "textKey": "menText",
+      "text": "Техника, мешки, лапы, выносливость и спарринги."
+    },
+    {
+      "type": "women",
+      "alt": "Женский бокс",
+      "titleKey": "women",
+      "title": "Женский бокс",
+      "textKey": "womenText",
+      "text": "Сила, координация, форма и уверенность."
+    },
+    {
+      "type": "kids",
+      "alt": "Детский бокс",
+      "titleKey": "kids",
+      "title": "Детский бокс",
+      "textKey": "kidsText",
+      "text": "Дисциплина, реакция и безопасная техника."
+    },
+    {
+      "type": "personal",
+      "alt": "Персональные тренировки",
+      "titleKey": "personal",
+      "title": "Персонально",
+      "textKey": "personalText",
+      "text": "Индивидуальный план и работа один на один."
+    }
+  ],
+  "prices": [
+    {
+      "featured": false,
+      "popular": true,
+      "keys": [
+        "groupBoxing",
+        "popular",
+        "perMonth"
+      ],
+      "price": "1000 MDL",
+      "raw": "<span data-t=\"groupBoxing\">Групповой бокс</span><span class=\"popular-badge\" data-t=\"popular\">Популярно</span><strong>1000 MDL</strong><small data-t=\"perMonth\">в месяц</small>"
+    },
+    {
+      "featured": false,
+      "popular": false,
+      "keys": [
+        "singleGroup",
+        "perSession"
+      ],
+      "price": "150 MDL",
+      "raw": "<span data-t=\"singleGroup\">Разовая групповая</span><strong>150 MDL</strong><small data-t=\"perSession\">за занятие</small>"
+    },
+    {
+      "featured": true,
+      "popular": false,
+      "keys": [
+        "personal",
+        "perSession"
+      ],
+      "price": "450 MDL",
+      "raw": "<span data-t=\"personal\">Персонально</span><strong>450 MDL</strong><small data-t=\"perSession\">за занятие</small>"
+    },
+    {
+      "featured": false,
+      "popular": false,
+      "keys": [
+        "personalPack",
+        "package"
+      ],
+      "price": "4000 MDL",
+      "raw": "<span data-t=\"personalPack\">10 персональных</span><strong>4000 MDL</strong><small data-t=\"package\">пакет</small>"
+    },
+    {
+      "featured": false,
+      "popular": false,
+      "keys": [
+        "miniClass",
+        "perSession"
+      ],
+      "price": "600 MDL",
+      "raw": "<span data-t=\"miniClass\">Мини-класс · 2 человека</span><strong>600 MDL</strong><small data-t=\"perSession\">за занятие</small>"
+    },
+    {
+      "featured": false,
+      "popular": false,
+      "keys": [
+        "miniGroup",
+        "perSession"
+      ],
+      "price": "250 MDL",
+      "raw": "<span data-t=\"miniGroup\">Мини-группа · 3+</span><strong>250 MDL</strong><small data-t=\"perSession\">за занятие</small>"
+    }
+  ],
+  "schedule": [
+    {
+      "dayKey": "mon",
+      "dayName": "Понедельник",
+      "lessons": [
+        {
+          "timeKey": null,
+          "time": "17:00",
+          "labelKey": "kids59",
+          "label": "Дети 5–9 лет"
+        },
+        {
+          "timeKey": null,
+          "time": "18:00",
+          "labelKey": "kids1016",
+          "label": "Дети 10–16 лет"
+        },
+        {
+          "timeKey": null,
+          "time": "19:00",
+          "labelKey": "groupBoxing",
+          "label": "Групповой бокс"
+        }
+      ]
+    },
+    {
+      "dayKey": "tue",
+      "dayName": "Вторник",
+      "lessons": [
+        {
+          "timeKey": null,
+          "time": "09:00 / 12:00",
+          "labelKey": "miniGroup",
+          "label": "Мини-группа · 3+"
+        },
+        {
+          "timeKey": null,
+          "time": "19:00",
+          "labelKey": "womenMini",
+          "label": "Мини-группа для девушек"
+        }
+      ]
+    },
+    {
+      "dayKey": "wed",
+      "dayName": "Среда",
+      "lessons": [
+        {
+          "timeKey": null,
+          "time": "17:00",
+          "labelKey": "kids59",
+          "label": "Дети 5–9 лет"
+        },
+        {
+          "timeKey": null,
+          "time": "18:00",
+          "labelKey": "kids1016",
+          "label": "Дети 10–16 лет"
+        },
+        {
+          "timeKey": null,
+          "time": "19:00",
+          "labelKey": "groupBoxing",
+          "label": "Групповой бокс"
+        }
+      ]
+    },
+    {
+      "dayKey": "thu",
+      "dayName": "Четверг",
+      "lessons": [
+        {
+          "timeKey": null,
+          "time": "09:00 / 12:00",
+          "labelKey": "miniGroup",
+          "label": "Мини-группа · 3+"
+        },
+        {
+          "timeKey": null,
+          "time": "19:00",
+          "labelKey": "womenMini",
+          "label": "Мини-группа для девушек"
+        }
+      ]
+    },
+    {
+      "dayKey": "fri",
+      "dayName": "Пятница",
+      "lessons": [
+        {
+          "timeKey": null,
+          "time": "17:00",
+          "labelKey": "kids59",
+          "label": "Дети 5–9 лет"
+        },
+        {
+          "timeKey": null,
+          "time": "18:00",
+          "labelKey": "kids1016",
+          "label": "Дети 10–16 лет"
+        },
+        {
+          "timeKey": null,
+          "time": "19:00",
+          "labelKey": "groupBoxing",
+          "label": "Групповой бокс"
+        }
+      ]
+    },
+    {
+      "dayKey": "sat",
+      "dayName": "Суббота",
+      "lessons": [
+        {
+          "timeKey": null,
+          "time": "11:00",
+          "labelKey": "womenMini",
+          "label": "Мини-группа для девушек"
+        }
+      ]
+    },
+    {
+      "dayKey": "sun",
+      "dayName": "Воскресенье",
+      "lessons": [
+        {
+          "timeKey": "byAgreement",
+          "time": "По договорённости",
+          "labelKey": "personal",
+          "label": "Персонально"
+        }
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "key": "r1",
+      "text": "«Пришёл без опыта. Через несколько недель уже почувствовал технику и уверенность.»",
+      "author": "Alex"
+    },
+    {
+      "key": "r2",
+      "text": "«Ребёнок ходит с удовольствием. Хорошая атмосфера и внимательный тренер.»",
+      "author": "Maria"
+    },
+    {
+      "key": "r3",
+      "text": "«Персональные тренировки дают очень быстрый прогресс.»",
+      "author": "Victor"
+    }
+  ],
+  "products": [
+    {
+      "slug": "black",
+      "alt": "12th Round Black",
+      "title": "12th Round Black",
+      "size": "12 oz",
+      "color": "Black",
+      "price": "1300 MDL"
+    },
+    {
+      "slug": "pink",
+      "alt": "12th Round Pink",
+      "title": "12th Round Pink",
+      "size": "12 oz",
+      "color": "Pink",
+      "price": "1300 MDL"
+    },
+    {
+      "slug": "white",
+      "alt": "12th Round White",
+      "title": "12th Round White",
+      "size": "12 oz",
+      "color": "White",
+      "price": "1300 MDL"
+    }
+  ],
+  "jsonld": {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "Cangur Boxing Club & Gym",
+    "description": "Мужской, женский и детский бокс, персональные тренировки в Кишинёве (Ботаника).",
+    "image": "https://cangur.md/og-image.jpg",
+    "url": "https://cangur.md/",
+    "telephone": "+37368702717",
+    "priceRange": "150-4000 MDL",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Grădina Botanică 2",
+      "addressLocality": "Chișinău",
+      "addressRegion": "Botanica",
+      "addressCountry": "MD"
+    },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Gradina+Botanica+2+Chisinau",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "07:00",
+      "closes": "21:00"
+    },
+    "sameAs": [
+      "https://www.instagram.com/cangur_boxingclub/"
+    ]
+  }
+}
