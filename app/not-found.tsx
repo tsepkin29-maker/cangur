@@ -4,7 +4,7 @@ export const metadata = { robots: { index: false, follow: true } };
 
 export default function NotFound() {
   return (
-    <html lang="ru">
+    <html lang="ro">
       <head>
         <meta name="robots" content="noindex, follow" />
       </head>
@@ -27,7 +27,7 @@ export default function NotFound() {
             Страница не найдена / Pagina nu a fost găsită / Page not found
           </p>
           <Link
-            href="/ru"
+            href="/ro"
             style={{
               display: "inline-block",
               marginTop: 16,
